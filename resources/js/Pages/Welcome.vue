@@ -1,46 +1,7 @@
 <template>
 <!-- Navigation -->
  
-<nav class="bg-white border-gray-200 dark:bg-gray-900">
-  <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-    <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
-        <span class="block text-green-600 text-4xl">🚑</span>
-        <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Health</span>
-    </a>
-    <button data-collapse-toggle="navbar-default" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-default" aria-expanded="false">
-        <span class="sr-only">Open main menu</span>
-        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
-        </svg>
-    </button>
-    <div class="hidden w-full md:block md:w-auto" id="navbar-default">
-      <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-               
-        <li>
-          <a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Services</a>
-        </li>
-        <li>
-          <a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">About</a>
-        </li>
-        <li>
-          <a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Contact</a>
-        </li>
-        <li>
-          <a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Register</a>
-        </li>
-        <li>
-          <a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Login</a>
-        </li>
-        <!-- <li>
-            <button type="button" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Register</button>
-        </li>
-        <li>
-            <button type="button" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Login</button>
-        </li> -->
-      </ul>
-    </div>
-  </div>
-</nav>
+<Customnav />
 
 <!-- Welcome Banner Section -->
 <section class="bg-center bg-no-repeat bg-[url('https://images.unsplash.com/photo-1504813184591-01572f98c85f?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')] bg-gray-700 bg-blend-multiply">
@@ -153,21 +114,44 @@
 
   <div class="container mx-auto flex flex-wrap">
     <!-- Icons Section -->
-    <div class="w-full md:w-1/3 flex flex-wrap p-8 justify-center md:justify-start gap-4">
+    <div class="w-full md:w-1/3 flex flex-wrap p-8 justify-center md:justify-end gap-4">
       <div class="flex flex-col items-center">
-        <div class="w-16 h-16 flex items-center justify-center bg-white text-teal-500 rounded-full shadow-md">
-          <i class="fas fa-user-md"></i>
+        <div class="w-24 h-24 flex items-center justify-center bg-white text-teal-500 rounded-full shadow-md">
+          <img src="https://apps.mobihealthinternational.com/images/2nd-slider-img.png">
         </div>
         <p class="mt-2 text-lg">Skin</p>
       </div>
       <div class="flex flex-col items-center">
-        <div class="w-16 h-16 flex items-center justify-center bg-white text-teal-500 rounded-full shadow-md">
-          <i class="fas fa-user-md"></i>
+        <div class="w-24 h-24 flex items-center justify-center bg-white text-teal-500 rounded-full shadow-md">
+          <img src="https://apps.mobihealthinternational.com/images/2nd-slider-img2.png">
         </div>
-        <p class="mt-2 text-lg">Skin</p>
+        <p class="mt-2 text-lg">Sick Child</p>
       </div>
       <!-- Repeat for other icons -->
-       
+      <div class="flex flex-col items-center">
+        <div class="w-24 h-24 flex items-center justify-center bg-white text-teal-500 rounded-full shadow-md">
+          <img src="https://apps.mobihealthinternational.com/images/2nd-slider-img3.png">
+        </div>
+        <p class="mt-2 text-lg">Female Health</p>
+      </div>
+      <div class="flex flex-col items-center">
+        <div class="w-24 h-24 flex items-center justify-center bg-white text-teal-500 rounded-full shadow-md">
+          <img src="https://apps.mobihealthinternational.com/images/2nd-slider-img4.png">
+        </div>
+        <p class="mt-2 text-lg">Cold & Flu</p>
+      </div>
+      <div class="flex flex-col items-center">
+        <div class="w-24 h-24 flex items-center justify-center bg-white text-teal-500 rounded-full shadow-md">
+          <img src="https://apps.mobihealthinternational.com/images/2nd-slider-img5.png">
+        </div>
+        <p class="mt-2 text-lg">Stomach</p>
+      </div>
+      <div class="flex flex-col items-center">
+        <div class="w-24 h-24 flex items-center justify-center bg-white text-teal-500 rounded-full shadow-md">
+          <img src="https://apps.mobihealthinternational.com/images/2nd-slider-img6.png">
+        </div>
+        <p class="mt-2 text-lg">Labs Review</p>
+      </div>
     </div>
 
     
@@ -241,9 +225,9 @@
         <div class="flex flex-wrap justify-between">
           <!-- Logo and Description -->
           <div class="w-full md:w-1/4 mb-6 md:mb-0">
-            <h2 class="text-lg font-semibold text-white">Your Company</h2>
+            <h2 class="text-lg font-semibold text-white">Health</h2>
             <p class="mt-4 text-gray-400">
-              Making the world a better place through constructing elegant hierarchies.
+              We provide excellent Teleconsultation to our global clients with 21st century technology.
             </p>
             <div class="flex space-x-4 mt-6">
               <a href="#" class="text-gray-400 hover:text-white">
@@ -262,7 +246,7 @@
           <!-- Footer Links -->
           <div class="w-full md:w-3/4 flex flex-wrap justify-between">
             <div class="w-1/2 md:w-1/4">
-              <h3 class="text-white font-semibold">Solutions</h3>
+              <h3 class="text-white font-semibold">Contact Information</h3>
               <ul class="mt-4 space-y-2">
                 <li><a href="#" class="hover:underline">Marketing</a></li>
                 <li><a href="#" class="hover:underline">Analytics</a></li>
@@ -271,11 +255,14 @@
               </ul>
             </div>
             <div class="w-1/2 md:w-1/4">
-              <h3 class="text-white font-semibold">Support</h3>
+              <h3 class="text-white font-semibold">Useful Link</h3>
               <ul class="mt-4 space-y-2">
-                <li><a href="#" class="hover:underline">Submit Ticket</a></li>
-                <li><a href="#" class="hover:underline">Documentation</a></li>
-                <li><a href="#" class="hover:underline">Guides</a></li>
+                <li><a href="#" class="hover:underline">Home</a></li>
+                <li><a href="#" class="hover:underline">Services</a></li>
+                <li><a href="#" class="hover:underline">Contact</a></li>
+                <li><a href="#" class="hover:underline">Register</a></li>
+                <li><a href="#" class="hover:underline">Login</a></li>
+
               </ul>
             </div>
             <div class="w-1/2 md:w-1/4">
@@ -297,7 +284,7 @@
           </div>
         </div>
         <div class="mt-12 text-center border-t border-gray-700 pt-6">
-          <p class="text-gray-400">© 2024 Your Company, Inc. All rights reserved.</p>
+          <p class="text-gray-400">© 2024 Health, Inc. All rights reserved.</p>
         </div>
       </div>
     </footer>
@@ -305,7 +292,12 @@
 </template>
 
 <script>
+import Customnav from '@/Components/Customnav.vue';
+
 export default {
+  components: {
+    Customnav,
+  },
   data() {
     return {
       items: [
