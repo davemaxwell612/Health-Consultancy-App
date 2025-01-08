@@ -145,6 +145,7 @@
 
 
 <script>
+import { Link } from '@inertiajs/vue3';
 import Customfooter from '@/Components/Customfooter.vue';
 import Customnav from '@/Components/Customnav.vue';
 import Healthsymp from '@/Components/Healthsymp.vue';

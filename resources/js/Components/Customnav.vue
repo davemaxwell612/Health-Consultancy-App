@@ -47,10 +47,14 @@
                 <a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Contact</a>
                 </li>
                 <li>
-                <a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Register</a>
+                  <a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
+                    <Link href="register">Register</Link>
+                  </a>
                 </li>
                 <li>
-                <a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Login</a>
+                  <a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
+                    <Link href="login">Login</Link>
+                  </a>
                 </li>
             </ul>
             </div>
@@ -94,16 +98,24 @@
             <a href="#" class="block text-gray-900 dark:text-white hover:text-blue-700 dark:hover:text-blue-500" >Contact</a>
           </li>
           <li>
-            <a href="#"
-              class="block text-gray-900 dark:text-white hover:text-blue-700 dark:hover:text-blue-500" >Register</a>
+            <a href="#" class="block text-gray-900 dark:text-white hover:text-blue-700 dark:hover:text-blue-500" >
+              <Link href="register">Register</Link> 
+            </a>
           </li>
           <li>
-            <a href="#" class="block text-gray-900 dark:text-white hover:text-blue-700 dark:hover:text-blue-500">Login</a>
+            <a href="#" class="block text-gray-900 dark:text-white hover:text-blue-700 dark:hover:text-blue-500">
+              <Link href="login">Longin</Link>
+            </a>
           </li>
         </ul>
       </div>
     </nav>
+    
   </template>
+  
+  <script setup>
+    import { Link } from '@inertiajs/vue3';
+  </script>
   
   <script>
   export default {
