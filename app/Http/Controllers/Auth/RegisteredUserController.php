@@ -30,22 +30,48 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|lowercase|email|max:255|unique:'.User::class,
+        // Validate the request
+        $validatedData = $request->validate([
+            'surname' => 'required|string|max:255',
+            'otherNames' => 'nullable|string|max:255',
+            'address' => 'required|string|max:255',
+            'tel' => 'required|string', // Match phone number format
+            'email' => 'required|string|email|max:255|unique:users,email',
+            'medicalConditions' => 'nullable|string|max:500',
+            'medications' => 'nullable|in:yes,no',
+            'username' => 'required|string|max:255|unique:users,username',
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'password_confirmation' => 'required|string', // Ensures confirmation is provided
+            'preferredLanguage' => 'nullable|in:english,french,spanish',
+            'termsAccepted' => 'accepted', // For checkbox validation
+            'country' => 'required|string|max:255', // You can add more countries as needed
+            'state' => 'required|string|max:255', // Add states based on selected country
         ]);
 
+        // Create the user
         $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'surname' => $validatedData['surname'],
+            'otherNames' => $validatedData['otherNames'],
+            'address' => $validatedData['address'],
+            'tel' => $validatedData['tel'],
+            'email' => $validatedData['email'],
+            'medicalConditions' => $validatedData['medicalConditions'],
+            'medications' => $validatedData['medications'],
+            'username' => $validatedData['username'],
+            'password' => Hash::make($validatedData['password']),
+            'preferredLanguage' => $validatedData['preferredLanguage'],
+            'termsAccepted' => $validatedData['termsAccepted'],
+            'country' => $validatedData['country'],
+            'state' => $validatedData['state'],
         ]);
 
+        // Trigger the Registered event
         event(new Registered($user));
 
+        // Log the user in
         Auth::login($user);
 
-        return redirect(route('dashboard', absolute: false));
+        // Redirect to the dashboard
+        return redirect(route('dashboard'));
     }
 }

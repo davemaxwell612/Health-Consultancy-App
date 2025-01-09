@@ -48,7 +48,7 @@
             </div>
           </div>
         </section>
-  
+
         <!-- Medical History -->
         <section class="mb-6">
           <h2 class="text-lg font-semibold mb-4">Medical History and Information (Optional)</h2>
@@ -78,7 +78,7 @@
             </div>
           </div>
         </section>
-  
+
         <!-- Payment Information -->
         <section class="mb-6">
           <h2 class="text-lg font-semibold mb-4">Payment Information</h2>
@@ -91,7 +91,7 @@
             </select>
           </div>
         </section>
-  
+
         <!-- Security and Authentication -->
         <section class="mb-6">
           <h2 class="text-lg font-semibold mb-4">Security and Authentication</h2>
@@ -110,7 +110,7 @@
             </div>
           </div>
         </section>
-  
+
         <!-- Additional Information -->
         <section class="mb-6">
           <h2 class="text-lg font-semibold mb-4">Additional Information</h2>
@@ -119,7 +119,7 @@
             <input v-model="form.language" type="text" class="w-full border rounded p-2" />
           </div>
         </section>
-  
+
         <!-- Terms and Conditions -->
         <div class="mb-6">
           <label class="inline-flex items-center">
@@ -127,48 +127,41 @@
             <span class="ml-2">I agree to the terms and conditions</span>
           </label>
         </div>
-  
+
         <button type="submit" class="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600">
           Submit
         </button>
       </form>
     </div>
   </template>
-  
-  <script>
-  export default {
-    data() {
-      return {
-        form: {
-          surname: '',
-          otherNames: '',
-          email: '',
-          phone: '',
-          dob: '',
-          gender: '',
-          address: '',
-          state: '',
-          country: '',
-          medicalConditions: '',
-          medications: '',
-          allergies: '',
-          familyHistory: '',
-          surgeries: '',
-          paymentMethod: '',
-          username: '',
-          password: '',
-          securityQuestions: '',
-          language: '',
-          terms: false,
-        },
-      };
-    },
-    methods: {
-      submitForm() {
-        console.log(this.form);
-        alert('Form submitted!');
-      },
-    },
-  };
-  </script>
-  
+
+
+<script setup>
+import {useForm} from "@inertiajs/vue3";
+let form = useForm({
+    surname: '',
+    otherNames: '',
+    email: '',
+    phone: '',
+    dob: '',
+    gender: '',
+    address: '',
+    state: '',
+    country: '',
+    medicalConditions: '',
+    medications: '',
+    allergies: '',
+    familyHistory: '',
+    surgeries: '',
+    paymentMethod: '',
+    username: '',
+    password: '',
+    securityQuestions: '',
+    language: '',
+    terms: false,
+})
+
+let submitForm = () => {
+    alert('Form submitted!');
+}
+</script>
