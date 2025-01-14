@@ -49,10 +49,13 @@
     
     <!-- Text Carousel Section -->
     <div class="w-full max-w-md mx-auto">
-      <h2 class="text-3xl font-bold mb-4">
+      <div class="p-4">
+        <h2 class="text-3xl font-bold mb-4">
         Health Concerns That May Not Require Face-To-Face Hospital Visit
       </h2>
-    <div class="relative bg-white rounded-lg shadow-lg p-6">
+      </div>
+     
+    <div class="relative sm:p-8 bg-white rounded-lg shadow-lg p-6">
       <!-- Carousel Content -->
        
       <div class="text-justify text-lg font-medium text-gray-800">
