@@ -1,10 +1,17 @@
 <template>
-$END$
+    <AuthenticatedLayout>
+
+    <p>Appointments</p>
+
+    </AuthenticatedLayout>
 </template>
 
 <script>
+import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
+
 export default {
-name: "Appointments"
+    name: "Appointments",
+    components: {AuthenticatedLayout}
 }
 </script>
 

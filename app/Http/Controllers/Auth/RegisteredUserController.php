@@ -63,6 +63,7 @@ class RegisteredUserController extends Controller
             'termsAccepted' => $validatedData['termsAccepted'],
             'country' => $validatedData['country'],
             'state' => $validatedData['state'],
+            'user_role' => 'patient',
         ]);
 
         // Trigger the Registered event

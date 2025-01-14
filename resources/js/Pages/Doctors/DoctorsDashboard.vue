@@ -1,10 +1,17 @@
 <template>
-$END$
+    <AuthenticatedLayout>
+
+        dsfhasdfadsfasdf
+
+    </AuthenticatedLayout>
 </template>
 
 <script>
+import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
+
 export default {
-name: "DoctorsDashboard"
+    name: "DoctorsDashboard",
+    components: {AuthenticatedLayout}
 }
 </script>
 

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('address');
             $table->string('tel', )->unique();
             $table->string('email')->unique();
+            $table->string('user_role')->default('patient');
             $table->string('password');
             $table->string('medicalConditions')->nullable();
             $table->enum('medications', ['yes', 'no'])->nullable();

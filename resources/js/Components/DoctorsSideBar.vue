@@ -15,11 +15,10 @@
 </template>
 
 <script setup>
-import { Link } from '@inertiajs/vue3';
 import AuthLinks from "@/Components/AuthLinks.vue";
 import {ref} from "vue"; // If you're using Inertia.js
 
-let links = ref(['Dashboard', 'Appointments', 'take-a-leave'])
+let links = ref(['doctor-dashboard', 'doctor-appointments', 'doctor-take-a-leave'])
 
 
 
