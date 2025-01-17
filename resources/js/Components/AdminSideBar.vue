@@ -20,7 +20,7 @@ import AuthLinks from "@/Components/AuthLinks.vue";
 import {ref} from "vue"; // If you're using Inertia.js
 
 let links = ref(['admin-all-dashboard', 'admin-all-appointments', 'admin-all-users', 'admin-add-user',
-                        'admin-all-transactions'
+                        'admin-all-transactions', 'admin-add-department'
 ])
 
 

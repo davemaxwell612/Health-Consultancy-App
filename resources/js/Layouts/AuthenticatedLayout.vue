@@ -1,6 +1,15 @@
 <template>
-    <div class="flex">
+    <div class="flex relative">
         <!-- Sidebar Section -->
+        <div
+            @click="toggleSidebar"
+            :class="
+        [' absolute h-screen w-screen bg-gray-600 z-40  lg:hidden opacity-20',
+             isSidebarOpen ? 'translate-x-0' : '-translate-x-full'
+]"
+        >
+
+        </div>
         <div
             :class="[
         'fixed p-6 z-50 bg-gray-700 flex h-screen flex-col items-start justify-between transition-transform duration-300 lg:translate-x-0',

@@ -1,1 +1,0 @@
-import{C as o}from"./Customnav-DwY9kUSc.js";import{o as t,g as a,b as s,a as r,s as c}from"./app-5HDFoKiK.js";const n={class:""},_={class:""},u={__name:"GuestLayout",setup(l){return(e,d)=>(t(),a("div",n,[s("div",null,[r(o)]),s("div",_,[c(e.$slots,"default")])]))}};export{u as _};

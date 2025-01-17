@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Department;
 use App\Models\Doctor;
 use App\Http\Requests\StoreDoctorRequest;
 use App\Http\Requests\UpdateDoctorRequest;
+use App\Models\DoctorDetails;
+use App\Models\User;
+use Illuminate\Http\Request;
 use inertia\inertia;
-use function Termwind\render;
+use PhpParser\Comment\Doc;
 
 class DoctorController extends Controller
 {
@@ -20,12 +24,37 @@ class DoctorController extends Controller
         ]);
     }
 
+    public function addDoctor(Request $request)
+    {
+        $validatedData = $request->validate([
+            'sentData.form.age' => 'int',
+            'sentData.form.fee' => 'int',
+            'sentData.form.qualification' => 'string',
+            'sentData.department' => 'int',
+            'sentData.user' => 'int',
+        ]);
+
+        $newDoctor = DoctorDetails::create([
+            'user_id' => $validatedData['sentData']['user'],
+            'age' => $validatedData['sentData']['form']['age'],
+            'qualification' => $validatedData['sentData']['form']['qualification'],
+            'fee' => $validatedData['sentData']['form']['fee'],
+            'department' => $validatedData['sentData']['department'],
+            'active' => true,
+        ]);
+        $newDoctor->save();
+        return response()->json(['message' => 'Doctor created successfully.']);
+    }
+
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        //
+        return inertia::render('Admin/CreateDoctor', [
+            'departments' => Department::orderBy('id', 'DESC')->get(),
+            'users' => User::all(),
+        ]);
     }
 
     public function appointments()
@@ -37,7 +66,7 @@ class DoctorController extends Controller
     }
 
 
-        public function createTakeALeave()
+    public function createTakeALeave()
     {
         return inertia::render('Doctors/TakeALeave', [
 
@@ -50,7 +79,7 @@ class DoctorController extends Controller
      */
     public function store(StoreDoctorRequest $request)
     {
-        //
+
     }
 
     /**
