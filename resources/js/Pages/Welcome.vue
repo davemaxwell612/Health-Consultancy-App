@@ -4,7 +4,10 @@
 <Customnav />
 
 <!-- Welcome Banner Section -->
-<section class="bg-center bg-no-repeat bg-[url('https://images.unsplash.com/photo-1504813184591-01572f98c85f?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')] bg-gray-700 bg-blend-multiply">
+<!-- <section 
+v-show="isLoaded" 
+:class="{ 'opacity-100': isLoaded, 'opacity-0': !isLoaded }" 
+class="bg-center bg-no-repeat bg-[url('https://images.unsplash.com/photo-1504813184591-01572f98c85f?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')] bg-gray-700 bg-blend-multiply">
     <div class="px-4 mx-auto max-w-screen-xl text-center py-24 lg:py-56">
         <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-white md:text-5xl lg:text-6xl">Speak with a Doctor LIVE</h1>
         <p class="mb-8 text-lg font-normal text-gray-300 lg:text-xl sm:px-16 lg:px-48">Many health concerns do not require an office doctor visit.</p>
@@ -20,7 +23,30 @@
             </Link>  
         </div>
     </div>
+</section> -->
+<Carousel />
+<section class="bg-[url('https://apps.mobihealthinternational.com/images/bg-img-02.png')] py-16 px-6 sm:px-12 md:px-24 lg:px-36">
+  <div class="max-w-4xl mx-auto text-center">
+    <h1 class="text-4xl font-extrabold mb-6">Welcome to Timeless: Your Health, Simplified</h1>
+    <p class="text-lg mb-8 leading-relaxed">
+      At Timeless, we bring healthcare to your fingertips. Our telemedicine app connects you with certified doctors, therapists, and healthcare professionals anytime, anywhere.
+    </p>
+    <p class="text-lg mb-8 leading-relaxed">
+      Whether you need a quick consultation, prescription refills, or expert advice, we’re here to provide personalized care that fits into your busy life.
+    </p>
+    <p class="text-lg mb-8 leading-relaxed">
+      Experience secure, convenient, and affordable healthcare without leaving home. Your journey to better health starts here.
+    </p>
+    <div class="mt-10">
+      <a href="#get-started" class="inline-block bg-white text-blue-700 font-medium text-lg px-6 py-3 rounded-full shadow-lg hover:bg-gray-100 transition">
+        Get Started
+      </a>
+    </div>
+  </div>
 </section>
+
+
+
 
 <!--  Service Steps (Guide) Section -->
 <section class="bg-[url('https://apps.mobihealthinternational.com/images/bg-img-02.png')] flex justify-center">
@@ -148,17 +174,24 @@
 import Customfooter from '@/Components/Customfooter.vue';
 import Customnav from '@/Components/Customnav.vue';
 import Healthsymp from '@/Components/Healthsymp.vue';
+import Carousel from "@/Components/Carousel.vue"
 
 export default {
   components: {
     Customnav,
     Healthsymp,
     Customfooter,
+    Carousel,
   },
   data() {
     return {
-           
+      isLoaded: false,     
     };
+  },
+  mounted() {
+    setTimeout(()=>{
+      this.isLoaded = true;
+    }, 200);
   },
   methods: {
     
