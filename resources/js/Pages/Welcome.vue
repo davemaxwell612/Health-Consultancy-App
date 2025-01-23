@@ -5,8 +5,6 @@
 
 <!-- Welcome Banner Section -->
 <!-- <section 
-v-show="isLoaded" 
-:class="{ 'opacity-100': isLoaded, 'opacity-0': !isLoaded }" 
 class="bg-center bg-no-repeat bg-[url('https://images.unsplash.com/photo-1504813184591-01572f98c85f?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')] bg-gray-700 bg-blend-multiply">
     <div class="px-4 mx-auto max-w-screen-xl text-center py-24 lg:py-56">
         <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-white md:text-5xl lg:text-6xl">Speak with a Doctor LIVE</h1>
@@ -25,31 +23,74 @@ class="bg-center bg-no-repeat bg-[url('https://images.unsplash.com/photo-1504813
     </div>
 </section> -->
 <Carousel />
-<section class="bg-[url('https://apps.mobihealthinternational.com/images/bg-img-02.png')] py-16 px-6 sm:px-12 md:px-24 lg:px-36">
-  <div class="max-w-4xl mx-auto text-center">
-    <h1 class="text-4xl font-extrabold mb-6">Welcome to Timeless: Your Health, Simplified</h1>
-    <p class="text-lg mb-8 leading-relaxed">
-      At Timeless, we bring healthcare to your fingertips. Our telemedicine app connects you with certified doctors, therapists, and healthcare professionals anytime, anywhere.
-    </p>
-    <p class="text-lg mb-8 leading-relaxed">
-      Whether you need a quick consultation, prescription refills, or expert advice, we’re here to provide personalized care that fits into your busy life.
-    </p>
-    <p class="text-lg mb-8 leading-relaxed">
-      Experience secure, convenient, and affordable healthcare without leaving home. Your journey to better health starts here.
-    </p>
-    <div class="mt-10">
-      <a href="#get-started" class="inline-block bg-white text-blue-700 font-medium text-lg px-6 py-3 rounded-full shadow-lg hover:bg-gray-100 transition">
-        Get Started
+
+  <section
+    ref="sectionRef"
+    :class="[
+      'transform transition duration-700 ease-out',
+      isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5',
+    ]"
+    class="bg-gray-100 py-12 px-6 lg:px-20"
+  >
+    <div class="max-w-7xl mx-auto text-center">
+      <h1 class="text-3xl md:text-4xl font-extrabold text-gray-800">
+        Welcome to <span class="text-teal-500">Timeless:</span> Your Health, Simplified
+      </h1>
+      <p class="mt-4 text-lg text-gray-600">
+        At Timeless, we bring healthcare to your fingertips. Our telemedicine app connects you with certified doctors, therapists, and healthcare professionals anytime, anywhere.
+      </p>
+    </div>
+
+    <div class="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+      <!-- Card 1 -->
+      <div
+        class="bg-white shadow-md rounded-lg overflow-hidden transform transition duration-700 ease-out"
+        :class="isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'"
+      >
+        <div class="p-6">
+          <h2 class="text-xl font-semibold text-gray-800">Quick Consultations</h2>
+          <p class="mt-2 text-gray-600">
+            Get expert medical advice in minutes, anytime and anywhere.
+          </p>
+        </div>
+      </div>
+      <!-- Card 2 -->
+      <div
+        class="bg-white shadow-md rounded-lg overflow-hidden transform transition duration-700 ease-out"
+        :class="isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'"
+      >
+        <div class="p-6">
+          <h2 class="text-xl font-semibold text-gray-800">Prescription Refills</h2>
+          <p class="mt-2 text-gray-600">
+            Enjoy hassle-free prescription renewals from the comfort of your home.
+          </p>
+        </div>
+      </div>
+      <!-- Card 3 -->
+      <div
+        class="bg-white shadow-md rounded-lg overflow-hidden transform transition duration-700 ease-out"
+        :class="isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'"
+      >
+        <div class="p-6">
+          <h2 class="text-xl font-semibold text-gray-800">Affordable Healthcare</h2>
+          <p class="mt-2 text-gray-600">
+            Experience secure, convenient, and budget-friendly healthcare.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-16 text-center">
+      <a href="#" class="w-full sm:w-auto inline-block bg-teal-500 text-white text-lg font-medium py-3 px-6 rounded-full shadow-md hover:bg-teal-600 transition">
+        Get Started Today
       </a>
     </div>
-  </div>
-</section>
-
-
+  </section>
 
 
 <!--  Service Steps (Guide) Section -->
-<section class="bg-[url('https://apps.mobihealthinternational.com/images/bg-img-02.png')] flex justify-center">
+<section 
+class="bg-[url('https://apps.mobihealthinternational.com/images/bg-img-02.png')] flex justify-center">
   <div class="w-full max-w-screen-lg px-4 ">
     <div class="mb-8 p-8">
       <h1 class="text-5xl font-bold text-blue-600">How It Works</h1>
@@ -141,13 +182,16 @@ class="bg-center bg-no-repeat bg-[url('https://images.unsplash.com/photo-1504813
         <div class="mb-8 mr-auto place-self-center lg:col-span-7">
             <h1 class="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl dark:text-white">SKIP THE WAITING ROOM</h1>
             <p class="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">No more long waiting lines and endless commutes! Plenty of FREE parking!.</p>
-            <a href="#" class="inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900">
+            <div class="flex flex-wrap justify-center gap-4 mt-4">
+              <Link href="register" class="w-full sm:w-auto inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900">
                 Get started
                 <svg class="w-5 h-5 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-            </a>
-            <a href="#" class="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800">
-                Talk with a Doctor
-            </a> 
+              </Link>
+              <Link href="login" class="w-full sm:w-auto inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800">
+                  Talk with a Doctor
+              </Link> 
+            </div>
+            
         </div>
         <div class=" lg:mt-0 lg:col-span-5 lg:flex">  
             <div class="relative mx-auto border-gray-800 dark:border-gray-800 bg-gray-800 border-[14px] rounded-[2.5rem] h-[600px] w-[300px] shadow-xl">
@@ -164,6 +208,8 @@ class="bg-center bg-no-repeat bg-[url('https://images.unsplash.com/photo-1504813
     </div>
 </section>
 
+<!-- ======================= Meet the Team slides================ -->
+  <Team />
 <!-- =============================Footer========================== -->
  <Customfooter />
 
@@ -175,6 +221,7 @@ import Customfooter from '@/Components/Customfooter.vue';
 import Customnav from '@/Components/Customnav.vue';
 import Healthsymp from '@/Components/Healthsymp.vue';
 import Carousel from "@/Components/Carousel.vue"
+import Team from '@/Components/Team.vue';
 
 export default {
   components: {
@@ -182,17 +229,31 @@ export default {
     Healthsymp,
     Customfooter,
     Carousel,
+    Team,
   },
   data() {
     return {
-      isLoaded: false,     
+      
+      isVisible: false,     
     };
   },
   mounted() {
-    setTimeout(()=>{
-      this.isLoaded = true;
-    }, 200);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            this.isVisible = true;
+            observer.disconnect(); // Stop observing once visible
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    observer.observe(this.$refs.sectionRef);
+  
   },
+  
   methods: {
     
   }
@@ -209,3 +270,4 @@ export default {
   }
   
 </style>
+

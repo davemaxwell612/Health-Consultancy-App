@@ -15,17 +15,33 @@
         <div class="carousel-content">
           <h1>{{ slide.title }}</h1>
           <p>{{ slide.description }}</p>
-          <div class="buttons">
-            <button @click="navigateTo(slide.link1)">{{ slide.button1 }}</button>
-            <button @click="navigateTo(slide.link2)">{{ slide.button2 }}</button>
+          <div class="buttons flex flex-wrap justify-center gap-4 mt-4">
+            <button 
+                @click="navigateTo(slide.link1)" 
+                class="w-full sm:w-auto bg-teal-500 text-white font-medium py-3 px-6 rounded-full shadow-md hover:bg-teal-600 transition">
+                {{ slide.button1 }}
+            </button>
+            <button 
+                @click="navigateTo(slide.link2)" 
+                class="w-full sm:w-auto bg-gray-200 text-gray-800 font-medium py-3 px-6 rounded-full shadow-md hover:bg-gray-300 transition">
+                {{ slide.button2 }}
+            </button>
           </div>
         </div>
       </div>
   
       <!-- Left and Right Arrow Buttons -->
-      <div class="arrow left-arrow" @click="prevSlide">&#8249;</div>
-      <div class="arrow right-arrow" @click="nextSlide">&#8250;</div>
-  
+      <!-- <div class="arrow left-arrow" @click="prevSlide">&#8249;</div>
+      <div class="arrow right-arrow" @click="nextSlide">&#8250;</div> -->
+    <div class="arrow left-arrow hidden sm:block absolute top-1/2 left-4 transform -translate-y-1/2 cursor-pointer text-2xl text-gray-800 hover:text-gray-600 transition"
+        @click="prevSlide" >
+        &#8249;
+    </div>
+      <div class="arrow right-arrow hidden sm:block absolute top-1/2 right-4 transform -translate-y-1/2 cursor-pointer text-2xl text-gray-800 hover:text-gray-600 transition"
+        @click="nextSlide">
+        &#8250;
+    </div>
+
       <!-- Indicators -->
       <div class="carousel-indicators">
         <span
@@ -44,10 +60,10 @@
     data() {
       return {
         slides: [
-          {
+                    {
             title: "Welcome to Timeless: Your Health, Simplified",
-            description:
-              "At Timeless, we bring healthcare to your fingertips. Our telemedicine app connects you with certified doctors, therapists, and healthcare professionals anytime, anywhere.",
+            // description:
+            //   "At Timeless, we bring healthcare to your fingertips. Our telemedicine app connects you with certified doctors, therapists, and healthcare professionals anytime, anywhere.",
             button1: "Get Started",
             button2: "Learn More",
             link1: "/register",
@@ -56,8 +72,8 @@
           },
           {
             title: "Speak with a Doctor LIVE",
-            description:
-              "Many health concerns do not require an office doctor visit. Experience secure, convenient, and affordable healthcare without leaving home.",
+            // description:
+            //   "Many health concerns do not require an office doctor visit. Experience secure, convenient, and affordable healthcare without leaving home.",
             button1: "Book Now",
             button2: "Get Help",
             link1: "/register",
@@ -66,8 +82,8 @@
           },
           {
             title: "Your Health, Our Priority",
-            description:
-              "Whether you need a quick consultation, prescription refills, or expert advice, we’re here to provide personalized care that fits into your busy life.",
+            // description:
+            //   "Whether you need a quick consultation, prescription refills, or expert advice, we’re here to provide personalized care that fits into your busy life.",
             button1: "Start Today",
             button2: "Contact Us",
             link1: "/register",
