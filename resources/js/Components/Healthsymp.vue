@@ -105,10 +105,7 @@ export default {
           title:"SAFE MEDICAL RECORDS:",
           description:"Have your medical data in a safe place, where you can access or share anytime, anywhere. We take data protection seriously and will not share your medical data or personal data without your consent. Our Electronic Medical record and video software are encrypted end to end for your safety, security and privacy.",
         },
-        {
-          title:"HOME VISITS:",
-          description:"No need to drive grandma miles to see her doctor, her doctor will be right in your home when you need him or her! We also provide additional services including home laboratory testing where possible, physiotherapy and home nursing care.",
-        }
+        
       ],
       currentIndex: 0
     };
