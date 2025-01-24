@@ -2,9 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Appointment;
 use App\Models\Patient;
 use App\Http\Requests\StorePatientRequest;
 use App\Http\Requests\UpdatePatientRequest;
+use http\Env\Response;
+use Illuminate\Foundation\Auth\User;
+use Illuminate\Http\Request;
+
+use Illuminate\Support\Facades\Auth;
 use inertia\inertia;
 
 class PatientController extends Controller
@@ -20,7 +26,26 @@ class PatientController extends Controller
 
     public function appointments()
     {
-        return inertia::render('Patient/Appointments', []);
+        return inertia::render('Patient/ClientScheduleAppointment', []);
+    }
+    public function createAppointments(Request $request)
+    {
+        $validateData =  $request->validate([
+            'form.messege' => 'string',
+            'form.clients_date_and_time' => 'date'
+        ]);
+
+
+        $newAppointment = Appointment::create([
+            'user_id' => Auth::user()->id,
+            'problem' => $validateData['form']['messege'],
+            'clients_date_and_time' => $validateData['form']['clients_date_and_time'],
+        ]);
+
+        $newAppointment->save();
+        return Response()->json(['message'=>'You have successfully booked an appointment']);
+
+
     }
 
     /**
@@ -29,6 +54,11 @@ class PatientController extends Controller
     public function create()
     {
         //
+    }
+
+    public function createMedicalHistory()
+    {
+        return inertia::render('Patient/MedicalHistory', []);
     }
 
     /**
