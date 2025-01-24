@@ -6,6 +6,10 @@ use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\DoctorController;
 use \App\Http\Controllers\AdminController;
 use  \App\Http\Controllers\PatientController;
+use  \App\Http\Controllers\ServicesController;
+use  \App\Http\Controllers\PricingController;
+use  \App\Http\Controllers\AboutUsController;
+use  \App\Http\Controllers\ContactUsController;
 use Inertia\Inertia;
 
 Route::get('/', function () {
@@ -16,6 +20,20 @@ Route::get('/', function () {
         'phpVersion' => PHP_VERSION,
     ]);
 });
+
+
+//guest Links
+
+    Route::get('/services', [ServicesController::class, 'index'])->name('services.index');
+    Route::get('/pricing', [PricingController::class, 'index'])->name('pricing.index');
+    Route::get('/about', [AboutUsController::class, 'index'])->name('about.index');
+    Route::get('/contact', [ContactUsController::class, 'index'])->name('contact.index');
+
+
+
+
+
+
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

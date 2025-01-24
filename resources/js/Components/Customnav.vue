@@ -8,7 +8,7 @@
             <Link href="/">Timeless Healthcare</Link>
           </span>
         </a>
-        
+
         <!-- Hamburger Menu Button -->
         <button
           @click="toggleDrawer"
@@ -36,40 +36,34 @@
         </button>
 
         <!-- Large screen Nav -->
-        <div class="hidden w-full md:block md:w-auto" id="navbar-default">
-            <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-              <li>
-                  <a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
-                    <Link href="/">Home</Link>
-                  </a>
-                </li>    
-                <li>
-                <a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
-                  <Link href="services">Services </Link>
-                </a>
-                </li>
-                <li>
-                <a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
-                  <Link href="about">About Us</Link></a>
-                </li>
-                <li>
-                <a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
-                  <Link href="contact">Contact Us</Link></a>
-                </li>
-                <li>
-                  <a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
-                    <Link href="register">Register</Link>
-                  </a>
-                </li>
-                <li>
-                  <a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
-                    <Link href="login">Login</Link>
-                  </a>
-                </li>
-            </ul>
-            </div>
+          <div class="hidden w-full md:block md:w-auto" id="navbar-default">
+              <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+                  <li>
+                      <Link href="/" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Home</Link>
+                  </li>
+                  <li>
+                      <Link href="/services" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Services</Link>
+                  </li>
+                  <li>
+                      <Link href="/pricing" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Pricing</Link>
+                  </li>
+                  <li>
+                      <Link href="/about" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">About Us</Link>
+                  </li>
+                  <li>
+                      <Link href="/contact" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Contact Us</Link>
+                  </li>
+                  <li>
+                      <Link href="/register" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Register</Link>
+                  </li>
+                  <li>
+                      <Link href="/login" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Login</Link>
+                  </li>
+              </ul>
+          </div>
+
       </div>
-  
+
       <!-- Sliding Drawer -->
       <div
         :class="['fixed top-0 left-0 h-full bg-gray-50 dark:bg-gray-800 z-50 transform transition-transform', isDrawerOpen ? 'translate-x-0' : '-translate-x-full']"
@@ -97,44 +91,36 @@
           </button>
         </div>
 
-        <ul class="font-medium p-4 space-y-4">
-          <li>
-            <a href="#" class="block text-gray-900 dark:text-white hover:text-blue-700 dark:hover:text-blue-500" >
-              <Link href="/">Home</Link> 
-            </a>
-          </li>
-          <li>
-            <a href="#" class="block text-gray-900 dark:text-white hover:text-blue-700 dark:hover:text-blue-500">
-              <Link href="services">Services</Link></a>
-          </li>
-          <li>
-            <a href="#" class="block text-gray-900 dark:text-white hover:text-blue-700 dark:hover:text-blue-500">
-              <Link href="about">About Us</Link></a>
-          </li>
-          <li>
-            <a href="#" class="block text-gray-900 dark:text-white hover:text-blue-700 dark:hover:text-blue-500" >
-              <Link href="contact">Contact Us</Link></a>
-          </li>
-          <li>
-            <a href="#" class="block text-gray-900 dark:text-white hover:text-blue-700 dark:hover:text-blue-500" >
-              <Link href="register">Register</Link> 
-            </a>
-          </li>
-          <li>
-            <a href="#" class="block text-gray-900 dark:text-white hover:text-blue-700 dark:hover:text-blue-500">
-              <Link href="login">Login</Link>
-            </a>
-          </li>
-        </ul>
+          <ul class="font-medium p-4 space-y-4">
+              <li>
+                  <Link href="/" class="block text-gray-900 dark:text-white hover:text-blue-700 dark:hover:text-blue-500">Home</Link>
+              </li>
+              <li>
+                  <Link href="/services" class="block text-gray-900 dark:text-white hover:text-blue-700 dark:hover:text-blue-500">Services</Link>
+              </li>
+              <li>
+                  <Link href="/about" class="block text-gray-900 dark:text-white hover:text-blue-700 dark:hover:text-blue-500">About Us</Link>
+              </li>
+              <li>
+                  <Link href="/contact" class="block text-gray-900 dark:text-white hover:text-blue-700 dark:hover:text-blue-500">Contact Us</Link>
+              </li>
+              <li>
+                  <Link href="/register" class="block text-gray-900 dark:text-white hover:text-blue-700 dark:hover:text-blue-500">Register</Link>
+              </li>
+              <li>
+                  <Link href="/login" class="block text-gray-900 dark:text-white hover:text-blue-700 dark:hover:text-blue-500">Login</Link>
+              </li>
+          </ul>
+
       </div>
     </nav>
-    
+
   </template>
-  
+
   <script setup>
     import { Link } from '@inertiajs/vue3';
   </script>
-  
+
   <script>
   export default {
        data() {
@@ -149,8 +135,7 @@
     },
   };
   </script>
-  
+
   <style scoped>
   /* Ensure the sliding drawer animation works smoothly */
   </style>
-  

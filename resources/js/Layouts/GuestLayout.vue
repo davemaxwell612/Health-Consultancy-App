@@ -1,8 +1,3 @@
-<script setup>
-import Customnav from "@/Components/Customnav.vue"
-import ApplicationLogo from '@/Components/ApplicationLogo.vue';
-import { Link } from '@inertiajs/vue3';
-</script>
 
 <template>
     <div
@@ -17,6 +12,12 @@ import { Link } from '@inertiajs/vue3';
         >
             <slot />
         </div>
+        <Customfooter />
+
     </div>
 </template>
 
+<script setup>
+import Customnav from "@/Components/Customnav.vue"
+import Customfooter from "@/Components/Customfooter.vue"
+</script>

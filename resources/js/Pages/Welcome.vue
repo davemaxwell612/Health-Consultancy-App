@@ -1,10 +1,8 @@
 <template>
-<!-- Navigation -->
- 
-<Customnav />
+    <GuestLayout>
 
 <!-- Welcome Banner Section -->
-<!-- <section 
+<!-- <section
 class="bg-center bg-no-repeat bg-[url('https://images.unsplash.com/photo-1504813184591-01572f98c85f?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')] bg-gray-700 bg-blend-multiply">
     <div class="px-4 mx-auto max-w-screen-xl text-center py-24 lg:py-56">
         <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-white md:text-5xl lg:text-6xl">Speak with a Doctor LIVE</h1>
@@ -18,7 +16,7 @@ class="bg-center bg-no-repeat bg-[url('https://images.unsplash.com/photo-1504813
               </Link>
             <Link href="login" class="inline-flex justify-center hover:text-gray-900 items-center py-3 px-5 sm:ms-4 text-base font-medium text-center text-white rounded-lg border border-white hover:bg-gray-100 focus:ring-4 focus:ring-gray-400">
                 Book an Appointment
-            </Link>  
+            </Link>
         </div>
     </div>
 </section> -->
@@ -81,15 +79,16 @@ class="bg-center bg-no-repeat bg-[url('https://images.unsplash.com/photo-1504813
     </div>
 
     <div class="mt-16 text-center">
-      <a href="#" class="w-full sm:w-auto inline-block bg-teal-500 text-white text-lg font-medium py-3 px-6 rounded-full shadow-md hover:bg-teal-600 transition">
+      <Link href="/register"
+          class="w-full sm:w-auto inline-block bg-teal-500 text-white text-lg font-medium py-3 px-6 rounded-full shadow-md hover:bg-teal-600 transition">
         Get Started Today
-      </a>
+      </Link>
     </div>
   </section>
 
 
 <!--  Service Steps (Guide) Section -->
-<section 
+<section
 class="bg-[url('https://apps.mobihealthinternational.com/images/bg-img-02.png')] flex justify-center">
   <div class="w-full max-w-screen-lg px-4 ">
     <div class="mb-8 p-8">
@@ -183,17 +182,17 @@ class="bg-[url('https://apps.mobihealthinternational.com/images/bg-img-02.png')]
             <h1 class="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl dark:text-white">SKIP THE WAITING ROOM</h1>
             <p class="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">No more long waiting lines and endless commutes! Plenty of FREE parking!.</p>
             <div class="flex flex-wrap justify-center gap-4 mt-4">
-              <Link href="register" class="w-full sm:w-auto inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900">
+              <Link href="/register" class="w-full sm:w-auto inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900">
                 Get started
                 <svg class="w-5 h-5 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
               </Link>
               <Link href="login" class="w-full sm:w-auto inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800">
                   Talk with a Doctor
-              </Link> 
+              </Link>
             </div>
-            
+
         </div>
-        <div class=" lg:mt-0 lg:col-span-5 lg:flex">  
+        <div class=" lg:mt-0 lg:col-span-5 lg:flex">
             <div class="relative mx-auto border-gray-800 dark:border-gray-800 bg-gray-800 border-[14px] rounded-[2.5rem] h-[600px] w-[300px] shadow-xl">
                 <div class="w-[148px] h-[18px] bg-gray-800 top-0 rounded-b-[1rem] left-1/2 -translate-x-1/2 absolute"></div>
                 <div class="h-[46px] w-[3px] bg-gray-800 absolute -start-[17px] top-[124px] rounded-s-lg"></div>
@@ -204,15 +203,14 @@ class="bg-[url('https://apps.mobihealthinternational.com/images/bg-img-02.png')]
                     <img src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/hero/mockup-2-dark.png" class="hidden dark:block w-[272px] h-[572px]" alt="">
                 </div>
             </div>
-        </div>                
+        </div>
     </div>
 </section>
 
 <!-- ======================= Meet the Team slides================ -->
   <Team />
 <!-- =============================Footer========================== -->
- <Customfooter />
-
+    </GuestLayout>
 </template>
 
 
@@ -233,8 +231,8 @@ export default {
   },
   data() {
     return {
-      
-      isVisible: false,     
+
+      isVisible: false,
     };
   },
   mounted() {
@@ -251,23 +249,24 @@ export default {
     );
 
     observer.observe(this.$refs.sectionRef);
-  
+
   },
-  
+
   methods: {
-    
+
   }
 };
 </script>
 
 <script setup>
   import { Link } from '@inertiajs/vue3';
+  import GuestLayout from "@/Layouts/GuestLayout.vue";
 </script>
 
 <style>
   .clip-slant {
     clip-path: polygon(0 0, 100% 10%, 100% 100%, 0 90%);
   }
-  
+
 </style>
 

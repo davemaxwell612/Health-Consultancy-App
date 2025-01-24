@@ -1,5 +1,5 @@
 <template>
-    <div id="carousel" class="carousel">
+    <div id="carousel" class="carousel bg-gray-900">
       <div
         class="carousel-slide"
         v-for="(slide, index) in slides"
@@ -16,20 +16,20 @@
           <h1>{{ slide.title }}</h1>
           <p>{{ slide.description }}</p>
           <div class="buttons flex flex-wrap justify-center gap-4 mt-4">
-            <button 
-                @click="navigateTo(slide.link1)" 
+            <button
+                @click="navigateTo(slide.link1)"
                 class="w-full sm:w-auto bg-teal-500 text-white font-medium py-3 px-6 rounded-full shadow-md hover:bg-teal-600 transition">
                 {{ slide.button1 }}
             </button>
-            <button 
-                @click="navigateTo(slide.link2)" 
+            <button
+                @click="navigateTo(slide.link2)"
                 class="w-full sm:w-auto bg-gray-200 text-gray-800 font-medium py-3 px-6 rounded-full shadow-md hover:bg-gray-300 transition">
                 {{ slide.button2 }}
             </button>
           </div>
         </div>
       </div>
-  
+
       <!-- Left and Right Arrow Buttons -->
       <!-- <div class="arrow left-arrow" @click="prevSlide">&#8249;</div>
       <div class="arrow right-arrow" @click="nextSlide">&#8250;</div> -->
@@ -54,7 +54,7 @@
       </div>
     </div>
   </template>
-  
+
   <script>
   export default {
     data() {
@@ -127,7 +127,7 @@
     },
   };
   </script>
-  
+
   <style>
   .carousel {
     height: 100vh;
@@ -136,7 +136,7 @@
     display: flex;
     align-items: center;
   }
-  
+
   .carousel-slide {
     background-size: cover;
     background-position: center;
@@ -148,7 +148,7 @@
     justify-content: center;
     align-items: center;
   }
-  
+
   .carousel-overlay {
     position: absolute;
     top: 0;
@@ -157,7 +157,7 @@
     height: 100%;
     background: rgba(0, 0, 0, 0.7);
   }
-  
+
   .carousel-content {
     color: white;
     text-align: center;
@@ -167,7 +167,7 @@
     border-radius: 10px;
     max-width: 600px;
   }
-  
+
   .buttons button {
     margin: 10px;
     padding: 10px 20px;
@@ -178,12 +178,12 @@
     border-radius: 5px;
     transition: transform 0.3s ease, background 0.3s ease;
   }
-  
+
   .buttons button:hover {
     background: #0056b3;
     transform: scale(1.05);
   }
-  
+
   .arrow {
     position: absolute;
     top: 50%;
@@ -197,19 +197,19 @@
     border-radius: 50%;
     z-index: 10;
   }
-  
+
   .left-arrow {
     left: 20px;
   }
-  
+
   .right-arrow {
     right: 20px;
   }
-  
+
   .arrow:hover {
     background: rgba(0, 0, 0, 0.9);
   }
-  
+
   .carousel-indicators {
     position: absolute;
     bottom: 15px;
@@ -218,7 +218,7 @@
     display: flex;
     gap: 10px;
   }
-  
+
   .indicator {
     width: 14px;
     height: 14px;
@@ -227,13 +227,12 @@
     cursor: pointer;
     transition: transform 0.3s ease, background 0.3s ease;
   }
-  
+
   .indicator:hover {
     transform: scale(1.2);
   }
-  
+
   .indicator.active {
     background: #007bff;
   }
   </style>
-  
