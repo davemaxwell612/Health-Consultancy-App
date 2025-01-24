@@ -1,1 +1,0 @@
-import{C as o}from"./Customnav-DropTCYW.js";import{o as t,f as a,a as e,b as r,x as c}from"./app-BE-Tb0pk.js";const n={class:""},_={class:""},u={__name:"GuestLayout",setup(l){return(s,d)=>(t(),a("div",n,[e("div",null,[r(o)]),e("div",_,[c(s.$slots,"default")])]))}};export{u as _};

@@ -1,0 +1,1 @@
+import{_ as r}from"./GuestLayout-B6ltWVRs.js";import{c as t,w as a,o as s,a as o}from"./app-C7yVC2c9.js";import"./_plugin-vue_export-helper-DlAUqK2U.js";const l={__name:"Services",setup(_){return(c,e)=>(s(),t(r,null,{default:a(()=>e[0]||(e[0]=[o("p",null,"Services",-1)])),_:1}))}};export{l as default};

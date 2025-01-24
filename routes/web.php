@@ -10,6 +10,7 @@ use  \App\Http\Controllers\ServicesController;
 use  \App\Http\Controllers\PricingController;
 use  \App\Http\Controllers\AboutUsController;
 use  \App\Http\Controllers\ContactUsController;
+use Illuminate\Support\Facades\Artisan;
 use Inertia\Inertia;
 
 Route::get('/', function () {
@@ -62,6 +63,28 @@ Route::middleware('auth')->group(function () {
     Route::get('/fetch-departments', [AdminController::class, 'fetchDepartments']);
     Route::get('/create-admin', [DoctorController::class, 'createTakeALeave']);
     Route::get('/create-patient', [DoctorController::class, 'createTakeALeave']);
+
+
+
+
+
+    // routes/web.php
+    Route::get('/run-migrations', function () {
+        // Check if the user is authorized to run the migration (optional but highly recommended)
+        if (auth()->user() && auth()->user()->user_role === 'admin') {
+            Artisan::call('migrate');
+            return 'Migrations have been run successfully!';
+        }
+
+        return 'Unauthorized action';
+    });
+
+
+
+
+
+
+
 
     //    patient links >>>>>>>>>>>
     Route::get('/patient-dashboard', [PatientController::class, 'index']);

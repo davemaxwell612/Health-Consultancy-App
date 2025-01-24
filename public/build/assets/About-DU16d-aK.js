@@ -1,0 +1,1 @@
+import{_ as o}from"./GuestLayout-B6ltWVRs.js";import{c as a,w as e,o as r,a as s}from"./app-C7yVC2c9.js";import"./_plugin-vue_export-helper-DlAUqK2U.js";const m={__name:"About",setup(u){return(_,t)=>(r(),a(o,null,{default:e(()=>t[0]||(t[0]=[s("p",null,"About us",-1)])),_:1}))}};export{m as default};
