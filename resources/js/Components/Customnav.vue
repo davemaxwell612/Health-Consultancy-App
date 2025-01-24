@@ -3,9 +3,9 @@
       <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <!-- Logo Section -->
         <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
-          <span class="block text-green-600 text-4xl">🚑</span>
+          <img src="https://i.ibb.co/2WBm3ff/logo.png" class="h-8" alt="Timeless Healthcare Logo" />
           <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
-            <Link href="/">Timeless Horizon Limited</Link>
+            <Link href="/">Timeless Healthcare</Link>
           </span>
         </a>
         
@@ -44,13 +44,17 @@
                   </a>
                 </li>    
                 <li>
-                <a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Services</a>
+                <a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
+                  <Link href="services">Services </Link>
+                </a>
                 </li>
                 <li>
-                <a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">About</a>
+                <a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
+                  <Link href="about">About Us</Link></a>
                 </li>
                 <li>
-                <a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Contact</a>
+                <a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
+                  <Link href="contact">Contact Us</Link></a>
                 </li>
                 <li>
                   <a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
@@ -100,13 +104,16 @@
             </a>
           </li>
           <li>
-            <a href="#" class="block text-gray-900 dark:text-white hover:text-blue-700 dark:hover:text-blue-500">Services</a>
+            <a href="#" class="block text-gray-900 dark:text-white hover:text-blue-700 dark:hover:text-blue-500">
+              <Link href="services">Services</Link></a>
           </li>
           <li>
-            <a href="#" class="block text-gray-900 dark:text-white hover:text-blue-700 dark:hover:text-blue-500">About</a>
+            <a href="#" class="block text-gray-900 dark:text-white hover:text-blue-700 dark:hover:text-blue-500">
+              <Link href="about">About Us</Link></a>
           </li>
           <li>
-            <a href="#" class="block text-gray-900 dark:text-white hover:text-blue-700 dark:hover:text-blue-500" >Contact</a>
+            <a href="#" class="block text-gray-900 dark:text-white hover:text-blue-700 dark:hover:text-blue-500" >
+              <Link href="contact">Contact Us</Link></a>
           </li>
           <li>
             <a href="#" class="block text-gray-900 dark:text-white hover:text-blue-700 dark:hover:text-blue-500" >
@@ -115,7 +122,7 @@
           </li>
           <li>
             <a href="#" class="block text-gray-900 dark:text-white hover:text-blue-700 dark:hover:text-blue-500">
-              <Link href="login">Longin</Link>
+              <Link href="login">Login</Link>
             </a>
           </li>
         </ul>

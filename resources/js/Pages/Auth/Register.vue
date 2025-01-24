@@ -152,7 +152,12 @@ const countries = {
     USA: ['California', 'Texas', 'Florida', 'New York'],
     Canada: ['Ontario', 'Quebec', 'British Columbia', 'Alberta'],
     India: ['Maharashtra', 'Tamil Nadu', 'Delhi', 'Karnataka'],
-    Nigeria: ['Lagos', 'Abuja', 'Kano', 'Rivers', 'Cross River'],
+    Nigeria: ['Abia','Adamawa', 'Akwa Ibom','Anambra','Bauchi','Bayelsa','Benue',
+                'Borno','Cross River','Delta','Ebonyi','Edo','Ekiti','Enugu','Gombe',
+                'Imo','Jigawa','Kaduna','Kano','Katsina','Kebbi','Kogi','Kwara','Lagos',
+                'Nasarawa','Niger','Ogun','Ondo','Osun','Oyo','Plateau','Rivers',
+                'Sokoto','Taraba','Yobe','Zamfara', 'Abuja'
+            ],
 };
 
 const errors = ref({}); // To store validation errors
