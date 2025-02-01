@@ -14,7 +14,7 @@
           :key="index"
           class="bg-white rounded-2xl shadow-lg p-6 flex flex-col items-center text-center transform transition duration-500 ease-in-out hover:scale-105 animate-fade-in delay-300"
         >
-          <div class="bg-teal-500 text-white rounded-full p-4 mb-4">
+          <div class="bg-blue-500 text-white rounded-full p-4 mb-4">
             <component :is="packageItem.icon" class="w-10 h-10"></component>
           </div>
           <h3 class="text-xl font-semibold text-gray-800 mb-3">{{ packageItem.title }}</h3>
