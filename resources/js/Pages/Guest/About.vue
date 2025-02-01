@@ -3,7 +3,7 @@
         <section class="bg-gray-100 py-12 px-6 lg:px-20">
     <!-- Header Section -->
     <div class="text-center mb-8">
-      <h1 class="text-4xl font-bold text-gray-800 mb-2 fade-in">About Us</h1>
+      <h1 class="text-4xl font-bold text-gray-800 mb-2 transform transition duration-500 ease-in-out hover:scale-105 animate-fade-in delay-300">About Us</h1>
       <p class="text-lg text-gray-600 slide-in">Discover who we are and what drives us.</p>
     </div>
 
@@ -40,7 +40,7 @@
     <div class="mt-16">
       
         <!-- Team Member -->
-        <Team />
+        <Team class="transform transition duration-500 ease-in-out hover:scale-105 animate-fade-in delay-300"/>
       </div>
    
   </section>
@@ -89,40 +89,19 @@ export default {
 
 <style scoped>
 /* Animation Classes */
-@keyframes fadeIn {
+@keyframes fade-in {
   from {
     opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes slideIn {
-  from {
     transform: translateY(20px);
-    opacity: 0;
   }
   to {
-    transform: translateY(0);
     opacity: 1;
+    transform: translateY(0);
   }
 }
 
 .animate-fade-in {
-  animation: fadeIn 1s ease-out forwards;
-}
-
-.animate-slide-in {
-  animation: slideIn 1s ease-out forwards;
-}
-
-.fade-in {
-  opacity: 0;
-}
-
-.slide-in {
-  opacity: 0;
+  animation: fade-in 1s ease-out;
 }
 </style>
 

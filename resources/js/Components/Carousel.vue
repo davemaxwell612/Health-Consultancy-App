@@ -1,5 +1,5 @@
 <template>
-    <div id="carousel" class="carousel bg-gray-900">
+    <div id="carousel" class="carousel bg-gray-900 transform transition duration-500 ease-in-out animate-fade-in delay-300">
       <div
         class="carousel-slide"
         v-for="(slide, index) in slides"
@@ -235,4 +235,18 @@
   .indicator.active {
     background: #007bff;
   }
+  @keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 1s ease-out;
+}
   </style>

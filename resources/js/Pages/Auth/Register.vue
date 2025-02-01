@@ -4,7 +4,7 @@
         <!-- <div class="mt-6 ">
             
         </div> -->
-        <div class="max-w-4xl mx-auto p-6 bg-white shadow-md rounded-md">
+        <div class="max-w-4xl mx-auto p-6 bg-white shadow-md rounded-md transform transition duration-500 ease-in-out animate-fade-in delay-300">
             <h2 class="text-2xl font-semibold mb-4 text-center">Sign Up Form</h2>
 
             <!-- Display Validation Errors -->
@@ -202,3 +202,20 @@ const submitForm = async () => {
     }
 };
 </script>
+
+<style scoped>
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 1s ease-out;
+}
+</style>

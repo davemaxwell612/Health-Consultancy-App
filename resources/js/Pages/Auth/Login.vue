@@ -1,7 +1,7 @@
 <template>
     <GuestLayout>
         <div class="min-h-screen flex items-center justify-center bg-gray-100 px-4 sm:px-6 lg:px-8 bg-[url('https://images.unsplash.com/photo-1504813184591-01572f98c85f?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')] bg-gray-700 bg-blend-multiply">
-            <div class="w-full max-w-md bg-white p-6 sm:p-8 rounded shadow">
+            <div class="w-full max-w-md bg-white p-6 sm:p-8 rounded shadow transition duration-500 ease-in-out animate-fade-in delay-300">
                 <h2 class="text-2xl font-bold text-center mb-6">Login</h2>
                 <form @submit.prevent="submit">
 
@@ -96,3 +96,21 @@ const submit = async () => {
     };
 }
 </script>
+
+
+<style scoped>
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 1s ease-out;
+}
+</style>

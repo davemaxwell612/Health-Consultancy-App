@@ -1,6 +1,6 @@
 <template>
     <!-- ============================ -->
-<div class="relative bg-teal-500 text-white py-20 clip-slant">
+<div class="relative bg-teal-500 text-white py-20 clip-slant transform transition duration-500 ease-in-out animate-fade-in delay-300">
   <!-- Slanted background effect -->
   <div class="absolute inset-0 bg-teal-500 -z-10 clip-slant"></div>
 
@@ -121,9 +121,24 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
   .clip-slant {
     clip-path: polygon(0 0, 100% 10%, 100% 100%, 0 90%);
   }
+
+  @keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 1s ease-out;
+}
   
 </style>

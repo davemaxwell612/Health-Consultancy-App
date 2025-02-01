@@ -89,7 +89,7 @@ class="bg-center bg-no-repeat bg-[url('https://images.unsplash.com/photo-1504813
 
 <!--  Service Steps (Guide) Section -->
 <section
-class="bg-[url('https://apps.mobihealthinternational.com/images/bg-img-02.png')] flex justify-center">
+class="bg-[url('https://apps.mobihealthinternational.com/images/bg-img-02.png')] flex justify-center transform transition duration-500 ease-in-out animate-fade-in delay-300">
   <div class="w-full max-w-screen-lg px-4 ">
     <div class="mb-8 p-8">
       <h1 class="text-5xl font-bold text-blue-600">How It Works</h1>

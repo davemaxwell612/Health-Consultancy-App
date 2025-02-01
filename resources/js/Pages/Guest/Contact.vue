@@ -1,6 +1,6 @@
 <template>
     <GuestLayout>
-  <div class="bg-gradient-to-b from-blue-50 to-gray-100 min-h-screen py-12 px-6">
+  <div class="bg-gradient-to-b from-blue-50 to-gray-100 min-h-screen py-12 px-6 transform transition duration-500 ease-in-out animate-fade-in delay-300">
     <!-- Hero Section -->
     <div class="text-center mb-12">
       <h1 class="text-5xl font-bold text-gray-800">Get in Touch</h1>
@@ -122,6 +122,19 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
+.animate-fade-in {
+  animation: fade-in 1s ease-out;
+}
 </style>
