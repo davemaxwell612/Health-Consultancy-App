@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pricing;
+use App\Models\Plans;
 use App\Http\Requests\StorePricingRequest;
 use App\Http\Requests\UpdatePricingRequest;
 use Inertia\Inertia;
@@ -14,7 +15,13 @@ class PricingController extends Controller
      */
     public function index()
     {
-        return inertia::render('Guest/Pricing');
+        // Fetch plans with their billing cycles and features
+        $plans = Plans::with(['billingCycle', 'features'])->get();
+
+        // Return the Inertia view and pass the plans as a prop
+        return inertia::render('Guest/Pricing', [
+            'plans' => $plans,
+        ]);
     }
 
     /**

@@ -10,6 +10,7 @@ use  \App\Http\Controllers\ServicesController;
 use  \App\Http\Controllers\PricingController;
 use  \App\Http\Controllers\AboutUsController;
 use  \App\Http\Controllers\ContactUsController;
+use  \App\Http\Controllers\PlansController;
 use Illuminate\Support\Facades\Artisan;
 use Inertia\Inertia;
 
@@ -47,6 +48,8 @@ Route::middleware('auth')->group(function () {
 
 
 
+
+
 //    doctors links >>>>>>>>>>>
     Route::get('/doctor-dashboard', [DoctorController::class, 'index']);
     Route::get('/doctor-appointments', [DoctorController::class, 'appointments']);
@@ -63,6 +66,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/fetch-departments', [AdminController::class, 'fetchDepartments']);
     Route::get('/create-admin', [DoctorController::class, 'createTakeALeave']);
     Route::get('/create-patient', [DoctorController::class, 'createTakeALeave']);
+    Route::get('/admin-add-plan', [PlansController::class, 'create']);
+    Route::post('/admin-add-plan', [PlansController::class, 'store']);
 
 
 
@@ -80,17 +85,13 @@ Route::middleware('auth')->group(function () {
     });
 
 
-
-
-
-
-
-
     //    patient links >>>>>>>>>>>
     Route::get('/patient-dashboard', [PatientController::class, 'index']);
     Route::get('/patient-schedule-appointments', [PatientController::class, 'appointments']);
     Route::post('/patient-schedule-appointment', [PatientController::class, 'createAppointments']);
     Route::get('/patient-medical-history', [PatientController::class, 'createMedicalHistory']);
+    Route::post('/patient-choose-plan', [PlansController::class, 'index']);
+
 });
 
 require __DIR__.'/auth.php';

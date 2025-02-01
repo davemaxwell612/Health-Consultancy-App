@@ -18,6 +18,7 @@ import {ref} from "vue"; // If you're using Inertia.js
 
 let links = ref([
     'patient-dashboard',
+    'patient-lay-a-complain',
     'patient-medical-history',
     'patient-schedule-appointments',
     'patient-upcoming-appointments',
