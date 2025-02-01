@@ -1,1 +1,0 @@
-import{_ as t}from"./GuestLayout-B6ltWVRs.js";import{c as a,w as e,o,a as s}from"./app-C7yVC2c9.js";import"./_plugin-vue_export-helper-DlAUqK2U.js";const l={__name:"Pricing",setup(n){return(i,r)=>(o(),a(t,null,{default:e(()=>r[0]||(r[0]=[s("p",null,"Pricing",-1)])),_:1}))}};export{l as default};

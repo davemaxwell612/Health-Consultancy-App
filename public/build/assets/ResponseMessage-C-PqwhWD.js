@@ -1,1 +1,0 @@
-import{o as r,f as a,t as o,u as n,p as t}from"./app-C7yVC2c9.js";const m={__name:"ResponseMessage",props:{response:String},setup(s){let e=s;return(p,c)=>(r(),a("p",{class:t([p.bg,"my-3 px-3 py-3"])},o(n(e).response),3))}};export{m as _};
