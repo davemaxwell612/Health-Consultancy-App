@@ -86,12 +86,11 @@ Route::middleware('auth')->group(function () {
 
 
     //    patient links >>>>>>>>>>>
-    Route::get('/patient-dashboard', [PatientController::class, 'index']);
-    Route::get('/patient-schedule-appointments', [PatientController::class, 'appointments']);
+//    Route::get('/patient-dashboard', [PatientController::class, 'index']);
+//    Route::get('/patient-schedule-appointments', [PatientController::class, 'appointments']);
+//    Route::get('/patient-lay-complain', [PatientController::class, 'layComplain']);
+//    Route::get('/patient-medical-history', [PatientController::class, 'createMedicalHistory']);
     Route::post('/patient-schedule-appointment', [PatientController::class, 'createAppointments']);
-    Route::get('/patient-medical-history', [PatientController::class, 'createMedicalHistory']);
-    Route::post('/patient-choose-plan', [PlansController::class, 'index']);
-
 });
 
 require __DIR__.'/auth.php';
