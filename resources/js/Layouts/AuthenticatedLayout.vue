@@ -12,7 +12,7 @@
         </div>
         <div
             :class="[
-        'fixed p-6 z-50 bg-gray-700 flex h-screen flex-col items-start justify-between transition-transform duration-300 lg:translate-x-0',
+        'overflow-y-auto  fixed p-6 z-50 bg-gray-700 flex h-screen flex-col items-start justify-between transition-transform duration-300 lg:translate-x-0',
         isSidebarOpen ? 'translate-x-0' : '-translate-x-full',
         'w-64'
       ]"

@@ -87,10 +87,26 @@ Route::middleware('auth')->group(function () {
 
 
     //    patient links >>>>>>>>>>>
-    Route::get('/patient-dashboard', [PatientController::class, 'index']);
-    Route::get('/patient-schedule-appointments', [PatientController::class, 'appointments']);
+//    Route::get('/patient-dashboard', [PatientController::class, 'index']);
+//    Route::get('/patient-schedule-appointments', [PatientController::class, 'appointments']);
+//    Route::get('/patient-lay-complain', [PatientController::class, 'layComplain']);
+//    Route::get('/patient-medical-history', [PatientController::class, 'createMedicalHistory']);
     Route::post('/patient-schedule-appointment', [PatientController::class, 'createAppointments']);
-    Route::get('/patient-medical-history', [PatientController::class, 'createMedicalHistory']);
+    Route::post('/patient-lay-complain', [PatientController::class, 'submitComplain']);
+
+
+
+
+    Route::get('/patient-dashboard-overview', [PatientController::class, 'index']);
+    Route::get('/patient-book-appointment', [PatientController::class, 'appointments']);
+    Route::get('/patient-my-appointments', [PatientController::class, '']);
+    Route::get('/patient-medical-records', [PatientController::class, 'createMedicalHistory']);
+    Route::get('/patient-prescriptions', [PatientController::class, 'submitComplain']);
+    Route::get('/patient-billing-and-payments', [PatientController::class, 'submitComplain']);
+    Route::get('/patient-messages', [PatientController::class, 'fetchComplains']);
+    Route::get('/patient-messages-create', [PatientController::class, 'layComplain']);
+    Route::get('/patient-profile-settings', [PatientController::class, '']);
+    Route::get('/patient-health-tracker', [PatientController::class, '']);
 });
 
 require __DIR__.'/auth.php';
