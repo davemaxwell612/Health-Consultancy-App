@@ -89,7 +89,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/patient-my-appointments', [PatientController::class, '']);
     Route::get('/patient-medical-records', [PatientController::class, 'createMedicalHistory']);
     Route::get('/patient-prescriptions', [PatientController::class, 'submitComplain']);
-    Route::get('/patient-billing-and-payments', [PatientController::class, 'submitComplain']);
+    Route::get('/patient-billing-and-payments', [PatientController::class, 'billsAndPayments']);
     Route::get('/patient-messages', [PatientController::class, 'fetchComplains']);
     Route::get('/patient-messages-create', [PatientController::class, 'layComplain']);
     Route::get('/patient-profile-settings', [PatientController::class, '']);

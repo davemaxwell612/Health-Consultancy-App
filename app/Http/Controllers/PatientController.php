@@ -3,14 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Models\Appointment;
+use App\Models\Invoice;
 use App\Models\Department;
 use App\Models\Patient;
 use App\Http\Requests\StorePatientRequest;
 use App\Http\Requests\UpdatePatientRequest;
 use App\Models\PatientComplain;
-use http\Env\Response;
+use Carbon\Carbon;
+use Dotenv\Util\Str;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
+
 
 use Illuminate\Support\Facades\Auth;
 use inertia\inertia;
@@ -104,6 +107,44 @@ class PatientController extends Controller
     public function createMedicalHistory()
     {
         return inertia::render('Patient/MedicalHistory', []);
+    }
+
+    public function billsAndPayments()
+    {
+        return inertia::render('Patient/BillingAndPayments', []);
+    }
+
+    public function generateInvoice(Request $request)
+    {
+        $request->validate([
+            'amount' => 'required|numeric|min:0',
+            'billing_cycle' => 'required|integer|in:3,6,12',
+        ]);
+
+        // Generate a unique invoice number
+        do {
+            $invoiceNumber = mt_rand(100000, 999999);
+        } while (Invoice::where('invoice_number', $invoiceNumber)->exists());
+
+        // Set invoice date (current date and time)
+        $invoiceDate = now();
+
+        // Calculate due date based on billing cycle
+        $dueDate = Carbon::now()->addMonths($request->billing_cycle);
+
+        // Create the invoice
+        $invoice = Invoice::create([
+            'invoice_number' => $invoiceNumber,
+            'invoice_date' => $invoiceDate,
+            'due_date' => $dueDate,
+            'amount' => $request->amount,
+            'status' => 'unpaid',
+        ]);
+
+//        return response()->json([
+//            'message' => 'Invoice generated successfully',
+//            'invoice' => $invoice
+//        ], 201);
     }
 
     /**
