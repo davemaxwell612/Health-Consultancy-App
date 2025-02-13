@@ -44,7 +44,7 @@
                 </td>
                 <td class="px-4 py-2 text-sm text-gray-800 flex flex-col ">
                     <Link
-                        :href="{ name: 'complains.view', params: { id: complain.id } }"
+                            :href="`/patient-view-reply/${$page.props.auth.user.id}/${complain.id}`"
                         class="text-blue-500 hover:text-blue-700 border-b-2"
                     >
                         {{ complain.responded_by ? 'View Reply': 'View Reply' }}

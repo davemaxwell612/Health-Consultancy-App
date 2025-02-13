@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Appointment;
 use App\Models\Invoice;
 use App\Models\Department;
+use App\Models\doctorRecommendation;
 use App\Models\Patient;
 use App\Http\Requests\StorePatientRequest;
 use App\Http\Requests\UpdatePatientRequest;
@@ -75,6 +76,18 @@ class PatientController extends Controller
     public function appointments()
     {
         return inertia::render('Patient/ClientScheduleAppointment', []);
+    }
+    public function userViewRecomendationFromDoctor($user_id, $complain_id )
+    {
+
+//        dd($user_id, $complain_id);
+        return inertia::render('Patient/RecomendationFromDoctor', [
+            'recomendations' => doctorRecommendation::where('patient_id', $user_id)
+                ->where('patient_complain_id', $complain_id)->get(),
+            'complain'=> PatientComplain::where('id', $complain_id)
+        ->where('user_id', $user_id)->first()->get()
+
+        ]);
     }
     public function createAppointments(Request $request)
     {

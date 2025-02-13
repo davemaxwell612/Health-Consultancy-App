@@ -51,6 +51,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/doctor-dashboard', [DoctorController::class, 'index']);
     Route::get('/doctor-appointments', [DoctorController::class, 'appointments']);
     Route::get('/doctor-take-a-leave', [DoctorController::class, 'createTakeALeave']);
+    Route::get('/doctor-messages', [DoctorController::class, 'fetchDepartmentMessages']);
+    Route::get('/doctor-reply/{complain_id}/{complain_user_id}', [DoctorController::class, 'creatReplyMessage']);
+    Route::post('/doctor-reply/save-complaints', [DoctorController::class, 'saveComplainMedications']);
 
 
 
@@ -94,6 +97,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/patient-messages-create', [PatientController::class, 'layComplain']);
     Route::get('/patient-profile-settings', [PatientController::class, '']);
     Route::get('/patient-health-tracker', [PatientController::class, '']);
+    Route::get('patient-view-reply/{user_id}/{complain_id}', [PatientController::class, 'userViewRecomendationFromDoctor']);
 });
 
 require __DIR__.'/auth.php';
