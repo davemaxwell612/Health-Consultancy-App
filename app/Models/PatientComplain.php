@@ -22,9 +22,13 @@ class PatientComplain extends Model
 
     ];
 
-
     public function department()
     {
         return $this->belongsTo(Department::class, 'department_id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

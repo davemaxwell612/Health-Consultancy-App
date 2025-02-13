@@ -7,8 +7,12 @@ use App\Models\Doctor;
 use App\Http\Requests\StoreDoctorRequest;
 use App\Http\Requests\UpdateDoctorRequest;
 use App\Models\DoctorDetails;
+use App\Models\doctorRecommendation;
+use App\Models\MedicalHistory;
+use App\Models\PatientComplain;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use inertia\inertia;
 use PhpParser\Comment\Doc;
 
@@ -21,6 +25,22 @@ class DoctorController extends Controller
     {
         return inertia::render('Doctors/DoctorsDashboard', [
 
+        ]);
+    }
+
+    public function fetchDepartmentMessages()
+    {
+        $doctor = DoctorDetails::where('user_id', auth()->id())->first();
+
+        if ($doctor) {
+            $complaints = PatientComplain::with('user')
+            ->where('department_id', $doctor->department)
+                ->get();
+        } else {
+            $complaints = [];
+        }
+        return inertia::render('Doctors/DepartmentMessages', [
+            'complains' => $complaints
         ]);
     }
 
@@ -65,6 +85,40 @@ class DoctorController extends Controller
 
     }
 
+    public function saveComplainMedications(Request $request)
+    {
+        $validatedData =$request->validate([
+            'user_id' => 'required|exists:users,id',
+            'complaint_id' => 'required|exists:patient_complains,id',
+            'complaints' => 'required|array',
+            'complaints.*.complain' => 'required|string',
+            'complaints.*.medication' => 'required|string',
+            'complaints.*.dosage' => 'required|string',
+        ]);
+
+
+        $id = Auth::user()->id;
+        $doctor = DoctorDetails::where('user_id', $id)->get();
+        $doctor_id = $doctor[0]->id;
+
+
+        foreach ($validatedData['complaints'] as $complaint) {
+       $newMedication =      doctorRecommendation::create([
+                'patient_id' => $request->user_id,
+                'doctor_id' => $doctor_id,
+                'patient_complain_id' => $validatedData['complaint_id'],
+//                'complain_id' => $validatedData['complaint_id'],
+                'complain' => $complaint['complain'],
+                'medication' => $complaint['medication'] ?? '',
+                'dosage' => $complaint['dosage'] ?? '',
+            ]);
+        }
+
+
+
+      dd($newMedication);
+    }
+
 
     public function createTakeALeave()
     {
@@ -96,6 +150,16 @@ class DoctorController extends Controller
     public function edit(Doctor $doctor)
     {
         //
+    }
+    public function creatReplyMessage(PatientComplain $complain_id, User $complain_user_id)
+    {
+
+        $medicalHistory = MedicalHistory::where('user_id', $complain_user_id->id)->first()->get();
+           return inertia::render('Doctors/ReplyPatientMessage', [
+               'complain' => $complain_id,
+               'complained_user' => $complain_user_id,
+               'medicalHistory' => $medicalHistory,
+           ]);
     }
 
     /**

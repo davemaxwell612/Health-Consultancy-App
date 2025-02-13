@@ -14,4 +14,10 @@ class DoctorDetails extends Model
             'department',
             'active',
     ];
+
+    public function department()
+    {
+        return $this->belongsTo(Department::class);
+    }
+
 }
