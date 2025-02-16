@@ -87,44 +87,37 @@ import GuestLayout from "@/Layouts/GuestLayout.vue";
 import axios from "axios";
 import {ref} from "vue";
 import ResponseMessage from "@/Components/ResponseMessage.vue";
-import { 
-  PhoneIcon, 
-  VideoCameraIcon, 
-  ClipboardDocumentCheckIcon, 
-  HeartIcon, 
-  CalendarIcon, 
-  PresentationChartBarIcon 
-} from "@heroicons/vue/24/solid";
+
 const packages = ref([
   {
     title: "24/7 Access",
     description: "Talk to our medical practitioners anytime you need support.",
-    icon: PhoneIcon, 
+    image: "",
   },
   {
     title: "Unlimited Calls",
     description: "Enjoy unlimited monthly calls with doctors and care practitioners.",
-    icon: VideoCameraIcon, 
+    image: "",
   },
   {
     title: "Follow-ups & Support",
     description: "Get regular check-ins and health monitoring.",
-    icon: ClipboardDocumentCheckIcon, 
+    image: "", 
   },
   {
     title: "Private Recommendations",
     description: "Receive private doctor recommendations securely.",
-    icon: HeartIcon, 
+    image: "",
   },
   {
     title: "Dedicated Care",
     description: "Access professionals for personalized healthcare.",
-    icon: CalendarIcon, 
+    image: "",
   },
   {
     title: "Medication & Refills",
     description: "Prompt drug prescriptions and scheduled refills.",
-    icon: PresentationChartBarIcon, 
+    image: "", 
   },
 ]);
 
