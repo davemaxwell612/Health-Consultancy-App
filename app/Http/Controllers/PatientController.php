@@ -75,7 +75,17 @@ class PatientController extends Controller
 
     public function appointments()
     {
-        return inertia::render('Patient/ClientScheduleAppointment', []);
+        return inertia::render('Patient/ClientScheduleAppointment', [
+            'departments' => Department::orderBy('name', 'ASC')->get()        ]);
+    }
+    public function fectUserAppointments()
+    {
+        $user_id = Auth::user()->id;
+        return inertia::render('Patient/Appointments', [
+            'appointments' => Appointment::where('user_id', $user_id)
+                ->with('department') // Eager load the department relationship
+                ->get()
+        ]);
     }
     public function userViewRecomendationFromDoctor($user_id, $complain_id )
     {
@@ -91,15 +101,19 @@ class PatientController extends Controller
     }
     public function createAppointments(Request $request)
     {
+
+//        dd($request['form']);
         $validateData =  $request->validate([
-            'form.messege' => 'string',
-            'form.clients_date_and_time' => 'date'
+            'form.messege' => 'required|string',
+            'form.department' => 'required|int',
+            'form.clients_date_and_time' => 'required|date'
         ]);
 
 
         $newAppointment = Appointment::create([
             'user_id' => Auth::user()->id,
-            'problem' => $validateData['form']['messege'],
+            'department_id' => $validateData['form']['department'],
+            'reason' => $validateData['form']['messege'],
             'clients_date_and_time' => $validateData['form']['clients_date_and_time'],
         ]);
 

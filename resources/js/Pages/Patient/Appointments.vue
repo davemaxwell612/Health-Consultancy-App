@@ -1,80 +1,36 @@
 <template>
     <AuthenticatedLayout>
 
-    <div class="flex flex-col-reverse lg:flex-row items-center justify-center bg-gray-100 p-4">
-        <!-- Details Section -->
-        <div class="lg:w-2/3 w-full bg-white shadow rounded-lg p-6">
-            <h2 class="text-2xl font-bold text-gray-700 mb-4">
-                Schedule appointment with Doctor
-            </h2>
-            <p class="text-gray-600">
-                <strong>Doctor:</strong> Doctor 1
-            </p>
-            <p class="text-gray-600">
-                <strong>Age:</strong> 30
-            </p>
-            <p class="text-gray-600">
-                <strong>Qualification:</strong> PHD
-            </p>
-
-            <!-- Input Fields -->
-            <form class="mt-4 space-y-4">
-                <div>
-                    <label
-                        for="date"
-                        class="block text-sm font-medium text-gray-700"
-                    >
-                        Consulting Date Address
-                    </label>
-                    <input
-                        type="date"
-                        id="date"
-                        name="date"
-                        class="w-full border border-gray-300 rounded-lg p-2 text-gray-700 focus:ring focus:ring-blue-300"
-                    />
-                </div>
-                <div>
-                    <label
-                        for="timeSlot"
-                        class="block text-sm font-medium text-gray-700"
-                    >
-                        Select Time Slot
-                    </label>
-                    <select
-                        id="timeSlot"
-                        name="timeSlot"
-                        class="w-full border border-gray-300 rounded-lg p-2 text-gray-700 focus:ring focus:ring-blue-300"
-                    >
-                        <option>Choose time slot</option>
-                        <option value="morning">Morning</option>
-                        <option value="afternoon">Afternoon</option>
-                        <option value="evening">Evening</option>
-                    </select>
-                </div>
-                <p class="text-gray-600">
-                    <strong>Doctor Fee:</strong> N 1000
-                </p>
-
-                <!-- Submit Button -->
-                <button
-                    type="submit"
-                    class="w-full bg-gray-500 hover:bg-gray-600 text-white font-medium rounded-lg p-3 transition-colors"
-                >
-                    Book the Slot
-                </button>
-            </form>
+    <div class="flex flex-col items-center justify-center bg-gray-100 p-4">
+        <h1 class="text-3xl font-semibold text-teal-900 mb-4">Upcoming appointments</h1>
+<div class="w-full flex items-center justify-end my-3">
+    <Link href="patient-book-appointment">
+        <button class="bg-gray-900 text-white py-2 px-6 rounded-lg hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-teal-600">
+            Create Appointment
+        </button>
+    </Link>
+</div>
+            <table class="table-auto w-full border-collapse border border-gray-300">
+                <thead>
+                <tr class="bg-gray-100">
+                    <th class="border border-gray-300 px-4 py-2">Appointment Date/Time</th>
+                    <th class="border border-gray-300 px-4 py-2">Department</th>
+                    <th class="border border-gray-300 px-4 py-2">Reason</th>
+                    <th class="border border-gray-300 px-4 py-2">Countdown</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr v-for="(appointment, index) in appointments" :key="index">
+                    <td class="border border-gray-300 px-4 py-2">
+                        {{ formatDateTime(appointment.clients_date_and_time) }}
+                    </td>
+                    <td class="border border-gray-300 px-4 py-2">{{ appointment.department.name}}</td>
+                    <td class="border border-gray-300 px-4 py-2">{{ appointment.reason }}</td>
+                    <td class="border border-gray-300 px-4 py-2">{{ getCountdown(appointment.clients_date_and_time) }}</td>
+                </tr>
+                </tbody>
+            </table>
         </div>
-
-
-        <!-- Image Section -->
-        <div class="lg:w-1/3 w-full h-full flex justify-center mb-6 lg:mb-0">
-            <img
-                src="https://plus.unsplash.com/premium_photo-1661580574627-9211124e5c3f?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                alt="Doctor"
-                class="w-48 h-48 object-cover rounded-md shadow"
-            />
-        </div>
-    </div>
 
 
     </AuthenticatedLayout>
@@ -82,6 +38,41 @@
 
 <script setup>
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
+import {ref, onMounted} from "vue";
+import {Link} from "@inertiajs/vue3";
+
+const props = defineProps({
+    appointments: Object
+})
+
+// Format date and time
+const formatDateTime = (dateTime) => {
+    const date = new Date(dateTime);
+    return date.toLocaleString();
+};
+
+// Calculate countdown
+
+const getCountdown = (dateTime) => {
+    const now = new Date();
+    const appointmentDate = new Date(dateTime);
+    const diff = appointmentDate - now;
+    if (diff <= 0) return 'Appointment has passed';
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+    return `${days}d ${hours}h ${minutes}m ${seconds}s left`;
+};
+
+
+
+onMounted(() => {
+    setInterval(() => {
+        appointments.value = [...appointments.value]; // Force Vue to update reactive data
+    }, 1000);
+});
 
 </script>
 

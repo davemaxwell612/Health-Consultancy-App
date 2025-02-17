@@ -89,7 +89,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/patient-lay-complain', [PatientController::class, 'submitComplain']);
     Route::get('/patient-dashboard-overview', [PatientController::class, 'index']);
     Route::get('/patient-book-appointment', [PatientController::class, 'appointments']);
-    Route::get('/patient-my-appointments', [PatientController::class, '']);
+    Route::get('/patient-my-appointments', [PatientController::class, 'fectUserAppointments']);
     Route::get('/patient-medical-records', [PatientController::class, 'createMedicalHistory']);
     Route::get('/patient-prescriptions', [PatientController::class, 'submitComplain']);
     Route::get('/patient-billing-and-payments', [PatientController::class, 'billsAndPayments']);
@@ -98,6 +98,38 @@ Route::middleware('auth')->group(function () {
     Route::get('/patient-profile-settings', [PatientController::class, '']);
     Route::get('/patient-health-tracker', [PatientController::class, '']);
     Route::get('patient-view-reply/{user_id}/{complain_id}', [PatientController::class, 'userViewRecomendationFromDoctor']);
+
+
+
+
+    Route::get('/run-artisan/{command}', function ($command) {
+        try {
+            Artisan::call($command);
+            return Artisan::output();
+        } catch (\Exception $e) {
+            return "Error: " . $e->getMessage();
+        }
+    });
+
+
+    Route::get('/run-npm/{command}', function ($command) {
+        try {
+            // Sanitize the command (optional but recommended)
+            $allowedCommands = ['install', 'run dev', 'run build'];
+            if (!in_array($command, $allowedCommands)) {
+                return "Error: Command not allowed.";
+            }
+
+            // Execute the NPM command
+            $output = shell_exec("npm $command 2>&1");
+            return nl2br($output);
+        } catch (\Exception $e) {
+            return "Error: " . $e->getMessage();
+        }
+    });
+
+
+
 });
 
 require __DIR__.'/auth.php';

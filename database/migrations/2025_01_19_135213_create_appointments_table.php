@@ -16,7 +16,10 @@ return new class extends Migration
             $table->foreignId('user_id')
                 ->constrained('users')
                 ->onDelete('cascade');
-            $table->string('problem');
+            $table->foreignId('department_id')
+                ->constrained('departments')
+                ->onDelete('cascade');
+            $table->string('reason');
             $table->dateTime('clients_date_and_time')
                 ->nullable();
             $table->timestamps();
