@@ -12,8 +12,6 @@ use App\Http\Requests\StorePatientRequest;
 use App\Http\Requests\UpdatePatientRequest;
 use App\Models\PatientComplain;
 use Carbon\Carbon;
-use Dotenv\Util\Str;
-use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
 
 

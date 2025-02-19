@@ -18,4 +18,9 @@ class doctorRecommendation extends Model
         'complain',
         'patient_complain_id'
     ];
+
+    public function patientComplain()
+    {
+        return $this->belongsTo(PatientComplain::class, 'patient_complain_id');
+    }
 }

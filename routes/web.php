@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\DoctorController;
 use \App\Http\Controllers\AdminController;
 use  \App\Http\Controllers\PatientController;
+use  \App\Http\Controllers\PatientPrescriptionController;
 use  \App\Http\Controllers\ServicesController;
 use  \App\Http\Controllers\PricingController;
 use  \App\Http\Controllers\AboutUsController;
@@ -81,7 +82,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/patient-my-appointments', [PatientController::class, 'fectUserAppointments']);
     Route::get('/patient-medical-records', [PatientController::class, 'createMedicalHistory']);
     Route::post('/patient-medical-records', [PatientController::class, 'saveMedicalHistory']);
-    Route::get('/patient-prescriptions', [PatientController::class, 'submitComplain']);
+    Route::get('/patient-prescriptions', [PatientPrescriptionController::class, 'index']);
     Route::get('/patient-billing-and-payments', [PatientController::class, 'billsAndPayments']);
     Route::get('/patient-messages', [PatientController::class, 'fetchComplains']);
     Route::get('/patient-messages-create', [PatientController::class, 'layComplain']);
