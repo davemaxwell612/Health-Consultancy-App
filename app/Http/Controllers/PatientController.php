@@ -6,6 +6,7 @@ use App\Models\Appointment;
 use App\Models\Invoice;
 use App\Models\Department;
 use App\Models\doctorRecommendation;
+use App\Models\MedicalHistory;
 use App\Models\Patient;
 use App\Http\Requests\StorePatientRequest;
 use App\Http\Requests\UpdatePatientRequest;
@@ -29,14 +30,16 @@ class PatientController extends Controller
         return inertia::render('Patient/Dashboard', []);
 
     }
+
     public function layComplain()
     {
         return inertia::render('Patient/LayComplain', [
-            'departments' =>Department::all(),
+            'departments' => Department::all(),
 
         ]);
 
     }
+
     public function fetchComplains()
     {
 
@@ -46,7 +49,7 @@ class PatientController extends Controller
             ->get();
 
         return inertia::render('Patient/Complains', [
-            'complains' =>$complains,
+            'complains' => $complains,
         ]);
 
     }
@@ -70,14 +73,15 @@ class PatientController extends Controller
         $newComplain->save();
 
         return response()
-            ->json(['message'=>'Your complaint has been successfully submitted']);
+            ->json(['message' => 'Your complaint has been successfully submitted']);
     }
 
     public function appointments()
     {
         return inertia::render('Patient/ClientScheduleAppointment', [
-            'departments' => Department::orderBy('name', 'ASC')->get()        ]);
+            'departments' => Department::orderBy('name', 'ASC')->get()]);
     }
+
     public function fectUserAppointments()
     {
         $user_id = Auth::user()->id;
@@ -87,23 +91,72 @@ class PatientController extends Controller
                 ->get()
         ]);
     }
-    public function userViewRecomendationFromDoctor($user_id, $complain_id )
-    {
 
-//        dd($user_id, $complain_id);
+    public function saveMedicalHistory(Request $request)
+    {
+        $validatedData = $request->validate([
+            'message' => 'String|nullable|max:255',
+            'medications' => 'String|nullable|max:255',
+            'allergies' => 'String|nullable|max:255',
+            'familyMedicalHistory' => 'String|nullable|max:255',
+            'previousSurgeries' => 'String|nullable|max:255',
+            'medicalConditions' => 'String|nullable|max:255',
+        ]);
+
+        $user_id = Auth::user()->id;
+//        dd($validatedData['message']);
+        try {
+            $existingHistory = MedicalHistory::where('user_id', $user_id)->first();
+
+        } catch (error) {
+
+        }
+
+        if ($existingHistory) {
+            $existingHistory->update([
+                'medical_condition' => $validatedData['medicalConditions'],
+                'messege' => $validatedData['message'],
+                'user_id' => $user_id,
+                'medications' => $validatedData['medications'],
+                'allergies' => $validatedData['allergies'],
+                'family_medical_history' => $validatedData['familyMedicalHistory'],
+                'previous_surgeries_or_hospitalizations' => $validatedData['previousSurgeries'],
+            ]);
+            $existingHistory->save();
+        } else {
+            $newHistory = MedicalHistory::create([
+                'medical_condition' => $validatedData['medicalConditions'],
+                'messege' => $validatedData['message'],
+                'user_id' => $user_id,
+                'medications' => $validatedData['medications'],
+                'allergies' => $validatedData['allergies'],
+                'family_medical_history' => $validatedData['familyMedicalHistory'],
+                'previous_surgeries_or_hospitalizations' => $validatedData['previousSurgeries'],
+            ]);
+
+        }
+
+    }
+
+    public function userViewRecomendationFromDoctor($user_id, $complain_id)
+    {
         return inertia::render('Patient/RecomendationFromDoctor', [
             'recomendations' => doctorRecommendation::where('patient_id', $user_id)
                 ->where('patient_complain_id', $complain_id)->get(),
-            'complain'=> PatientComplain::where('id', $complain_id)
-        ->where('user_id', $user_id)->first()->get()
+            'complain' => PatientComplain::where('id', $complain_id)
+                ->where('user_id', $user_id)->first()->get(),
+
+            'medicalHistory' => MedicalHistory::where('user_id', $user_id)->first(),
+
 
         ]);
     }
+
     public function createAppointments(Request $request)
     {
 
 //        dd($request['form']);
-        $validateData =  $request->validate([
+        $validateData = $request->validate([
             'form.messege' => 'required|string',
             'form.department' => 'required|int',
             'form.clients_date_and_time' => 'required|date'
@@ -118,7 +171,7 @@ class PatientController extends Controller
         ]);
 
         $newAppointment->save();
-        return Response()->json(['message'=>'You have successfully booked an appointment']);
+        return Response()->json(['message' => 'You have successfully booked an appointment']);
 
 
     }
@@ -133,7 +186,16 @@ class PatientController extends Controller
 
     public function createMedicalHistory()
     {
-        return inertia::render('Patient/MedicalHistory', []);
+
+        $user_id = Auth::user()->id;
+            try {
+            $existingHistory = MedicalHistory::where('user_id', $user_id)->first();
+            } catch (error){
+
+            };
+        return inertia::render('Patient/MedicalHistory', [
+            'existingHistory'=> $existingHistory,
+        ]);
     }
 
     public function billsAndPayments()

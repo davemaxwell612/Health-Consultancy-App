@@ -31,11 +31,6 @@ Route::get('/about', [AboutUsController::class, 'index'])->name('about.index');
 Route::get('/contact', [ContactUsController::class, 'index'])->name('contact.index');
 
 
-
-
-
-
-
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -44,7 +39,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-
 
 
 //    doctors links >>>>>>>>>>>
@@ -56,7 +50,6 @@ Route::middleware('auth')->group(function () {
     Route::post('/doctor-reply/save-complaints', [DoctorController::class, 'saveComplainMedications']);
 
 
-
 //    Admin >>>>>>>>>>>
     Route::get('/admin-add-user', [AdminController::class, 'index']);
     Route::get('/create-doctor', [DoctorController::class, 'create']);
@@ -66,9 +59,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/fetch-departments', [AdminController::class, 'fetchDepartments']);
     Route::get('/create-admin', [DoctorController::class, 'createTakeALeave']);
     Route::get('/create-patient', [DoctorController::class, 'createTakeALeave']);
-
-
-
 
 
     // routes/web.php
@@ -83,7 +73,6 @@ Route::middleware('auth')->group(function () {
     });
 
 
-
     //    patient links >>>>>>>>>>>
     Route::post('/patient-schedule-appointment', [PatientController::class, 'createAppointments']);
     Route::post('/patient-lay-complain', [PatientController::class, 'submitComplain']);
@@ -91,6 +80,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/patient-book-appointment', [PatientController::class, 'appointments']);
     Route::get('/patient-my-appointments', [PatientController::class, 'fectUserAppointments']);
     Route::get('/patient-medical-records', [PatientController::class, 'createMedicalHistory']);
+    Route::post('/patient-medical-records', [PatientController::class, 'saveMedicalHistory']);
     Route::get('/patient-prescriptions', [PatientController::class, 'submitComplain']);
     Route::get('/patient-billing-and-payments', [PatientController::class, 'billsAndPayments']);
     Route::get('/patient-messages', [PatientController::class, 'fetchComplains']);
@@ -98,8 +88,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/patient-profile-settings', [PatientController::class, '']);
     Route::get('/patient-health-tracker', [PatientController::class, '']);
     Route::get('patient-view-reply/{user_id}/{complain_id}', [PatientController::class, 'userViewRecomendationFromDoctor']);
-
-
 
 
     Route::get('/run-artisan/{command}', function ($command) {
@@ -129,7 +117,6 @@ Route::middleware('auth')->group(function () {
     });
 
 
-
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

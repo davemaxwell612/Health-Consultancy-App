@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -13,17 +12,15 @@ return new class extends Migration
     {
         Schema::create('medical_histories', function (Blueprint $table) {
             $table->id();
-            $table->boolean('medical_condition')->default(false);
+            $table->text('medical_condition')->nullable();
             $table->text('messege')->nullable();
             $table->foreignId('user_id')
                 ->constrained('users')
                 ->onDelete('cascade');
             $table->text('medications')->nullable();
-            $table->boolean('is_allergic')->default(false);
             $table->text('allergies')->nullable();
             $table->text('family_medical_history')->nullable();
             $table->text('previous_surgeries_or_hospitalizations')->nullable();
-            $table->timestamp('clients_date_and_time')->nullable();
             $table->timestamps();
         });
     }
