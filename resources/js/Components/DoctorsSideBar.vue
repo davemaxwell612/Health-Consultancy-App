@@ -1,13 +1,15 @@
 <template>
     <div
-        class="h-fit w-full  text-white flex flex-col ">
+        className="h-fit w-full  text-white flex flex-col ">
         <div>
-            <h2 class="font-bold pb-6">Timeless Horizone</h2>
+            <p>You are logged in as Dr.</p>
+            <h2 className="font-bold pb-6">{{ $page.props.auth.user.username }}</h2>
+
         </div>
 
         <AuthLinks
-            v-for="link in links"
-        :linkText="link"
+            v-for="doctorLink in doctorLinks"
+            :link="doctorLink"
         />
     </div>
 </template>
@@ -16,18 +18,8 @@
 import AuthLinks from "@/Components/AuthLinks.vue";
 import {ref} from "vue";
 
-let links = ref(
-    [
-        'doctor-dashboard-overview',
-        'doctor-appointments',
-        // 'doctor-patients-list',
-        // 'doctor-medical-records-management',
-        'doctor-prescription-management',
-        'doctor-messages',
-        // 'doctor-billing-and-earnings',
-        'doctor-profile-and-availability'
-    ]
-)
-
+let props = defineProps({
+    doctorLinks: Array,
+})
 </script>
 

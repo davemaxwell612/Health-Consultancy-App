@@ -37,13 +37,13 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::get('/patient-profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
 
 //    doctors links >>>>>>>>>>>
-    Route::get('/doctor-dashboard', [DoctorController::class, 'index']);
+    Route::get('/doctor-dashboard-overview', [DoctorController::class, 'index'])->name('doctor.dashboard');
     Route::get('/doctor-appointments', [DoctorController::class, 'appointments']);
     Route::get('/doctor-take-a-leave', [DoctorController::class, 'createTakeALeave']);
     Route::get('/doctor-messages', [DoctorController::class, 'fetchDepartmentMessages']);
@@ -52,7 +52,7 @@ Route::middleware('auth')->group(function () {
 
 
 //    Admin >>>>>>>>>>>
-    Route::get('/admin-add-user', [AdminController::class, 'index']);
+    Route::get('/admin-add-user', [AdminController::class, 'index'])->name('admin.dashboard');
     Route::get('/create-doctor', [DoctorController::class, 'create']);
     Route::post('/add-doctor', [DoctorController::class, 'addDoctor']);
     Route::get('/admin-add-department', [AdminController::class, 'addDepartment']);
@@ -77,7 +77,7 @@ Route::middleware('auth')->group(function () {
     //    patient links >>>>>>>>>>>
     Route::post('/patient-schedule-appointment', [PatientController::class, 'createAppointments']);
     Route::post('/patient-lay-complain', [PatientController::class, 'submitComplain']);
-    Route::get('/patient-dashboard-overview', [PatientController::class, 'index']);
+    Route::get('/patient-dashboard-overview', [PatientController::class, 'index'])->name('patient.dashboard');
     Route::get('/patient-book-appointment', [PatientController::class, 'appointments']);
     Route::get('/patient-my-appointments', [PatientController::class, 'fectUserAppointments']);
     Route::get('/patient-medical-records', [PatientController::class, 'createMedicalHistory']);

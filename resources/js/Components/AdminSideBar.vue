@@ -1,30 +1,25 @@
 <template>
     <div
 
-        class="h-fit w-full  text-white flex flex-col ">
+        className="h-fit w-full  text-white flex flex-col ">
         <div>
-            <h2 class="font-bold pb-6">Admin Panel</h2>
+            <p> you're logged in as Admin </p>
+            <h2 className="font-bold pb-6">{{ $page.props.auth.user.username }}</h2>
+
         </div>
-
-
         <AuthLinks
-            v-for="link in links"
-            :linkText="link"
+            v-for="adminLink in adminLinks"
+            :link="adminLink"
         />
     </div>
 </template>
 
 <script setup>
-import { Link } from '@inertiajs/vue3';
 import AuthLinks from "@/Components/AuthLinks.vue";
-import {ref} from "vue"; // If you're using Inertia.js
 
-let links = ref(['admin-all-dashboard', 'admin-all-appointments', 'admin-all-users', 'admin-add-user', 'admin-add-plan',
-                        'admin-all-transactions', 'admin-add-department'
-])
-
-
-
+let props = defineProps({
+    adminLinks: Array,
+})
 </script>
 
 <style scoped>
