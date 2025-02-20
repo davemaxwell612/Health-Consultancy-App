@@ -6,7 +6,9 @@ use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\DoctorController;
 use \App\Http\Controllers\AdminController;
 use  \App\Http\Controllers\PatientController;
+use  \App\Http\Controllers\AppointmentDepartmentDoctorController;
 use  \App\Http\Controllers\PatientPrescriptionController;
+use  \App\Http\Controllers\AppointmentController;
 use  \App\Http\Controllers\ServicesController;
 use  \App\Http\Controllers\PricingController;
 use  \App\Http\Controllers\AboutUsController;
@@ -44,11 +46,13 @@ Route::middleware('auth')->group(function () {
 
 //    doctors links >>>>>>>>>>>
     Route::get('/doctor-dashboard-overview', [DoctorController::class, 'index'])->name('doctor.dashboard');
-    Route::get('/doctor-appointments', [DoctorController::class, 'appointments']);
+    Route::get('/doctor-appointments', [AppointmentController::class, 'index']);
     Route::get('/doctor-take-a-leave', [DoctorController::class, 'createTakeALeave']);
     Route::get('/doctor-messages', [DoctorController::class, 'fetchDepartmentMessages']);
     Route::get('/doctor-reply/{complain_id}/{complain_user_id}', [DoctorController::class, 'creatReplyMessage']);
     Route::post('/doctor-reply/save-complaints', [DoctorController::class, 'saveComplainMedications']);
+    Route::post('/doctor-reply/save-complaints', [DoctorController::class, 'saveComplainMedications']);
+    Route::post('/doctor-reschedule-appointment/{appointment_id}', [AppointmentDepartmentDoctorController::class, 'store']);
 
 
 //    Admin >>>>>>>>>>>

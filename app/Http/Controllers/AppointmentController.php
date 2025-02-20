@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Appointment;
 use App\Http\Requests\StoreAppointmentRequest;
 use App\Http\Requests\UpdateAppointmentRequest;
+use App\Models\DoctorDetails;
+use Illuminate\Support\Facades\Auth;
+use Inertia\Inertia;
 
 class AppointmentController extends Controller
 {
@@ -13,7 +16,13 @@ class AppointmentController extends Controller
      */
     public function index()
     {
-        //
+        $user_id = Auth::user()->id;
+        $doctor = DoctorDetails::where('user_id', $user_id)->first()->get();
+        $doctor_department = $doctor[0]->department;
+//        dd($doctor_department);
+        return inertia::render('Doctors/Appointments', [
+            'appointments' => Appointment::where('department_id', $doctor_department)->get()
+        ]);
     }
 
     /**

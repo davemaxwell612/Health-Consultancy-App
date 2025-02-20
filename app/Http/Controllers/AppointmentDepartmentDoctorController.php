@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Appointment;
 use App\Models\Appointment_Department_Doctor;
 use App\Http\Requests\StoreAppointment_Department_DoctorRequest;
 use App\Http\Requests\UpdateAppointment_Department_DoctorRequest;
+use App\Models\DoctorDetails;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class AppointmentDepartmentDoctorController extends Controller
 {
@@ -27,9 +32,21 @@ class AppointmentDepartmentDoctorController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreAppointment_Department_DoctorRequest $request)
+    public function store(Request $request, Appointment $appointment_id)
     {
-        //
+        $validatedAppointment = $request->validate([
+            'doctorDateAndTime' => 'required|date',
+        ]);
+        $loggedInUserId = Auth::user()->id;
+        $doctor = DoctorDetails::where('user_id', $loggedInUserId)->first();
+//        dd(  $appointment_id->id);
+
+        $validatedAppointment = Appointment_Department_Doctor::create([
+                'department_id' => $appointment_id->department_id,
+                'appointment_id' => $appointment_id->id,
+                'doctor_id' => $doctor->id,
+                'available_data_and_time' => $validatedAppointment['doctorDateAndTime'],
+        ]);
     }
 
     /**

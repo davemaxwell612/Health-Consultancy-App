@@ -21,6 +21,11 @@ return new class extends Migration
                 ->nullable()
                 ->constrained('doctor_details')
                 ->onDelete('cascade');
+
+            $table->foreignId('appointment_id')
+                ->nullable()
+                ->constrained('appointments')
+                ->onDelete('cascade');
             $table->dateTime('available_data_and_time');
             $table->timestamps();
         });
