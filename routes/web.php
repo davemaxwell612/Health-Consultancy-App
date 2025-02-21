@@ -9,6 +9,7 @@ use  \App\Http\Controllers\PatientController;
 use  \App\Http\Controllers\AppointmentDepartmentDoctorController;
 use  \App\Http\Controllers\PatientPrescriptionController;
 use  \App\Http\Controllers\AppointmentController;
+use  \App\Http\Controllers\PlansController;
 use  \App\Http\Controllers\ServicesController;
 use  \App\Http\Controllers\PricingController;
 use  \App\Http\Controllers\AboutUsController;
@@ -59,6 +60,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin-add-user', [AdminController::class, 'index'])->name('admin.dashboard');
     Route::get('/create-doctor', [DoctorController::class, 'create']);
     Route::post('/add-doctor', [DoctorController::class, 'addDoctor']);
+    Route::post('/admin-add-plan', [PlansController::class, 'store']);
+    Route::get('/admin-add-plan', [PlansController::class, 'create']);
     Route::get('/admin-add-department', [AdminController::class, 'addDepartment']);
     Route::post('/admin-add-department', [AdminController::class, 'storeDepartment']);
     Route::get('/fetch-departments', [AdminController::class, 'fetchDepartments']);
@@ -93,6 +96,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/patient-profile-settings', [PatientController::class, '']);
     Route::get('/patient-health-tracker', [PatientController::class, '']);
     Route::get('patient-view-reply/{user_id}/{complain_id}', [PatientController::class, 'userViewRecomendationFromDoctor']);
+    Route::get('/patient-available-plans', [PlansController::class, 'availablePlans']);
+    Route::post('/patient-choose-plan', [PatientController::class, 'generateInvoice']);
 
 
     Route::get('/run-artisan/{command}', function ($command) {
@@ -120,8 +125,6 @@ Route::middleware('auth')->group(function () {
             return "Error: " . $e->getMessage();
         }
     });
-
-
 });
 
 require __DIR__ . '/auth.php';

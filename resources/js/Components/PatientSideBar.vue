@@ -20,8 +20,6 @@ import {ref} from "vue"; // If you're using Inertia.js
 let props = defineProps({
     patientLinks: Array,
 })
-
-
 </script>
 
 <style scoped>

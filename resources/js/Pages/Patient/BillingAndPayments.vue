@@ -29,21 +29,24 @@
             </tr>
             </thead>
             <tbody>
-            <tr class="border-b border-gray-200 dark:border-gray-700 border-t-2">
+            <tr class="border-b border-gray-200 dark:border-gray-700 border-t-2"
+            v-for="transaction in transactions"
+            >
                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800">
-                    Status
+                    {{ transaction.invoice_number }}
                 </th>
                 <td class="px-6 py-4">
-                    Silver
+                    {{ transaction.invoice_date }}
                 </td>
                 <td class="px-6 py-4 bg-gray-50 dark:bg-gray-800">
-                    Laptop
+                    {{ transaction.due_date }}
                 </td>
                 <td class="px-6 py-4">
-                    $2999
+                    {{ transaction.amount }}
                 </td>
                 <td class="px-6 py-4 text-green-500">
-                    paid
+                    <Link href="#"> {{ transaction.status }} </Link>
+
                 </td>
             </tr>
 
@@ -56,6 +59,7 @@
 
 <script setup>
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
+import {Link} from "../../../../.vite/deps/@inertiajs_vue3.js";
 
 let props  = defineProps({
     transactions: Object
