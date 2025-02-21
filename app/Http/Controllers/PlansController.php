@@ -61,14 +61,22 @@ class PlansController extends Controller
 
         ]);
     }
+    public function availablePlans()
+    {
+        // Fetch plans with their billing cycles and features
+        $plans = Plans::with(['billingCycle', 'features'])->get();
+
+        // Return the Inertia view and pass the plans as a prop
+        return inertia::render('Patient/AvailablePlans', [
+            'plans' => $plans,
+        ]);
+    }
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-
-
         // Validate the request
         $validatedData = $request->validate([
             'form.title' => 'required|string|max:255',

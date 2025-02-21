@@ -23,6 +23,7 @@ let links = ref([
     "patient-medical-records",
     "patient-prescriptions",
     "patient-billing-and-payments",
+    "patient-available-plans",
     "patient-messages",
     "patient-profile-settings",
     "patient-health-tracker"

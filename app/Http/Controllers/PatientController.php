@@ -111,16 +111,21 @@ class PatientController extends Controller
 
     public function billsAndPayments()
     {
-        return inertia::render('Patient/BillingAndPayments', []);
+        $user_id = Auth::user()->id;
+        return inertia::render('Patient/BillingAndPayments', [
+            'transactions' => Invoice::orderBy('id', 'ASC')->where('user_id', $user_id)->get()
+
+        ]);
     }
 
     public function generateInvoice(Request $request)
     {
-        $request->validate([
-            'amount' => 'required|numeric|min:0',
-            'billing_cycle' => 'required|integer|in:3,6,12',
-        ]);
 
+//        dd($request->plan);
+//        $request->validate([
+//            'amount' => 'required|numeric|min:0',
+//            'billing_cycle' => 'required|integer|in:3,6,12',
+//        ]);
         // Generate a unique invoice number
         do {
             $invoiceNumber = mt_rand(100000, 999999);
@@ -130,14 +135,16 @@ class PatientController extends Controller
         $invoiceDate = now();
 
         // Calculate due date based on billing cycle
-        $dueDate = Carbon::now()->addMonths($request->billing_cycle);
+        $dueDate = Carbon::now()->addMonths($request->plan['billing_cycle'][0]['duration']);
 
+//        dd($dueDate->toDateString());
         // Create the invoice
         $invoice = Invoice::create([
+            'user_id' => Auth::user()->id,
             'invoice_number' => $invoiceNumber,
             'invoice_date' => $invoiceDate,
             'due_date' => $dueDate,
-            'amount' => $request->amount,
+            'amount' => $request->plan['billing_cycle'][0]['price'],
             'status' => 'unpaid',
         ]);
 
