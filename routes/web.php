@@ -9,6 +9,7 @@ use  \App\Http\Controllers\PatientController;
 use  \App\Http\Controllers\AppointmentDepartmentDoctorController;
 use  \App\Http\Controllers\PatientPrescriptionController;
 use  \App\Http\Controllers\AppointmentController;
+use  \App\Http\Controllers\MedicalRecordsController;
 use  \App\Http\Controllers\PlansController;
 use  \App\Http\Controllers\ServicesController;
 use  \App\Http\Controllers\PricingController;
@@ -54,6 +55,9 @@ Route::middleware('auth')->group(function () {
     Route::post('/doctor-reply/save-complaints', [DoctorController::class, 'saveComplainMedications']);
     Route::post('/doctor-reply/save-complaints', [DoctorController::class, 'saveComplainMedications']);
     Route::post('/doctor-reschedule-appointment/{appointment_id}', [AppointmentDepartmentDoctorController::class, 'store']);
+    Route::get('/doctor-medical-records', [MedicalRecordsController::class, 'index']);
+    Route::get('/doctor-update-medical-records', [MedicalRecordsController::class, 'create']);
+    Route::post('/doctor-update-medical-records', [MedicalRecordsController::class, 'store']);
 
 
 //    Admin >>>>>>>>>>>
@@ -87,8 +91,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/patient-dashboard-overview', [PatientController::class, 'index'])->name('patient.dashboard');
     Route::get('/patient-book-appointment', [PatientController::class, 'appointments']);
     Route::get('/patient-my-appointments', [PatientController::class, 'fectUserAppointments']);
-    Route::get('/patient-medical-records', [PatientController::class, 'createMedicalHistory']);
-    Route::post('/patient-medical-records', [PatientController::class, 'saveMedicalHistory']);
+
+    Route::get('/patient-medical-records', [MedicalRecordsController::class, 'userRecords']);
+    Route::get('/patient-medical-history', [PatientController::class, 'createMedicalHistory']);
+    Route::post('/patient-medical-history', [PatientController::class, 'saveMedicalHistory']);
+
+
     Route::get('/patient-prescriptions', [PatientPrescriptionController::class, 'index']);
     Route::get('/patient-billing-and-payments', [PatientController::class, 'billsAndPayments']);
     Route::get('/patient-messages', [PatientController::class, 'fetchComplains']);
@@ -97,7 +105,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/patient-health-tracker', [PatientController::class, '']);
     Route::get('patient-view-reply/{user_id}/{complain_id}', [PatientController::class, 'userViewRecomendationFromDoctor']);
     Route::get('/patient-available-plans', [PlansController::class, 'availablePlans']);
-    Route::post('/patient-choose-plan', [PatientController::class, 'generateInvoice']);
+    Route::get('/patient-choose-plan', [PatientController::class, 'generateInvoice']);
+    Route::get('/patient-choose-plan/{plan}', [PatientController::class, 'planDetails']);
+//    Route::post('/patient-choose-plan', [PatientController::class, 'generateInvoice']);
 
 
     Route::get('/run-artisan/{command}', function ($command) {

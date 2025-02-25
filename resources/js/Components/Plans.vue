@@ -93,11 +93,13 @@ let choosePlan = (plan, index) => {
         billing_cycle: [{
             ...plan.billing_cycle[0],
             price: plan.billing_cycle[0].price * selectedPeriod.value,
-            period: selectedPeriod.value
+            duration: selectedPeriod.value
         }]
     };
 
-    axios.post('/patient-choose-plan', {plan: updatedPlan})
+    const queryString = encodeURIComponent(JSON.stringify(updatedPlan));
+
+    axios.get(`/patient-choose-plan?plan=${queryString}`)
         .then(res => {
             if (res.data.message) {
                 response.value = res.data.message;

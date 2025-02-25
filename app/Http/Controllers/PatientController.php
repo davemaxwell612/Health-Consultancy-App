@@ -208,6 +208,13 @@ class PatientController extends Controller
     public function generateInvoice(Request $request)
     {
 
+        $plan = json_decode($request->query('plan'), true);
+        return inertia::render('Patient/PaymentPage', [
+
+            'plan' => $plan,
+        ]);
+        dd($plan['billing_cycle']);
+//        return response()->json(['message' => 'Plan received', 'data' => $plan]);
 //        dd($request->plan);
 //        $request->validate([
 //            'amount' => 'required|numeric|min:0',
@@ -224,7 +231,6 @@ class PatientController extends Controller
         // Calculate due date based on billing cycle
         $dueDate = Carbon::now()->addMonths($request->plan['billing_cycle'][0]['duration']);
 
-//        dd($dueDate->toDateString());
         // Create the invoice
         $invoice = Invoice::create([
             'user_id' => Auth::user()->id,
@@ -234,11 +240,6 @@ class PatientController extends Controller
             'amount' => $request->plan['billing_cycle'][0]['price'],
             'status' => 'unpaid',
         ]);
-
-//        return response()->json([
-//            'message' => 'Invoice generated successfully',
-//            'invoice' => $invoice
-//        ], 201);
     }
 
     /**

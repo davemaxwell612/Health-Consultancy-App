@@ -76,6 +76,10 @@ const patientLinks = ref([
         icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="${strokeColor.value}" :class="${widthHight.value}"><path stroke-linecap="round" stroke-linejoin="round" d="M6 3.75V6M18 3.75V6M3 10.5h18M6.75 10.5v9.75m10.5-9.75v9.75m-5.25-9.75v9.75" /></svg>`
     },
     {
+        name: "patient-medical-history",
+        icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="${strokeColor.value}" :class="${widthHight.value}"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8.25v7.5m3.75-3.75h-7.5M12 21V3m7.5 9H3" /></svg>`
+    },
+    {
         name: "patient-medical-records",
         icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="${strokeColor.value}" :class="${widthHight.value}"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8.25v7.5m3.75-3.75h-7.5M12 21V3m7.5 9H3" /></svg>`
     },
@@ -120,6 +124,12 @@ const doctorLinks = ref([
     {
         name: "doctor-messages",
         icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 5.25h16.5m-16.5 6h16.5m-16.5 6h16.5" /></svg>`
+    },
+    {
+        name: "doctor-medical-records",
+        icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="${strokeColor.value}" :class="${widthHight.value}">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-2M9 3a3 3 0 1 1 6 0M9 3h6M9 8h6M9 12h3" />
+    </svg>`
     },
     {
         name: "doctor-profile-and-availability",
