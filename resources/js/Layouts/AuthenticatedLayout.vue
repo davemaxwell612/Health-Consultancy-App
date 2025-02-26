@@ -129,11 +129,11 @@ const doctorLinks = ref([
         active: false,
         icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M6 3.75V6M18 3.75V6M3 10.5h18M6.75 10.5v9.75m10.5-9.75v9.75m-5.25-9.75v9.75" /></svg>`
     },
-    {
-        name: "doctor-prescription-management",
-        active: false,
-        icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 3.75h9M7.5 3.75v16.5m9-16.5v16.5M3 9h18M3 15h18" /></svg>`
-    },
+    // {
+    //     name: "doctor-prescription-management",
+    //     active: false,
+    //     icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 3.75h9M7.5 3.75v16.5m9-16.5v16.5M3 9h18M3 15h18" /></svg>`
+    // },
     {
         name: "doctor-messages",
         active: false,
