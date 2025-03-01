@@ -152,6 +152,8 @@
           </div>
       </div>
   </section>
+
+  <Organizationservices />
   
   <!-- ==============Healthsymp component============== -->
   <Healthsymp />
@@ -187,7 +189,99 @@
           </div>
       </div>
   </section>
-  
+
+  <!-- ===============Access Care Section===================== -->
+  <section class="flex flex-col md:flex-row items-center px-8 md:px-20 py-16 space-y-10 md:space-y-0">
+    <!-- Left Image -->
+    <div class="w-full md:w-1/2 flex justify-center">
+      <img src="https://healthconnect247.com/wp-content/uploads/2021/11/8.png" alt="Doctor Consultation" class="max-w-full h-auto">
+    </div>
+
+    <!-- Right Content -->
+    <div class="w-full md:w-1/2 text-center md:text-left px-4">
+      <h2 class="text-2xl md:text-4xl font-bold text-gray-900 leading-snug">
+        Access to care for <span class="text-blue-600">everybody</span>
+      </h2>
+      <p class="text-gray-600 mt-4 text-lg leading-relaxed">
+        You can speak to a doctor, psychologist, and wellness expert via audio and video call options.
+      </p>
+
+      <!-- Feature List -->
+      <div class="mt-8 space-y-8">
+        <div class="flex items-start space-x-5">
+          <span class="p-4 border border-teal-500 rounded-full flex items-center justify-center text-2xl">
+            📞
+          </span>
+          <div>
+            <h3 class="font-semibold text-gray-900 text-lg">Unlimited Toll-Free Calls</h3>
+            <p class="text-gray-600 text-base leading-relaxed">
+              You can speak to a doctor as many times as you wish without spending airtime.
+            </p>
+          </div>
+        </div>
+
+        <div class="flex items-start space-x-5">
+          <span class="p-4 border border-teal-500 rounded-full flex items-center justify-center text-2xl">
+            🎥
+          </span>
+          <div>
+            <h3 class="font-semibold text-gray-900 text-lg">Speak to a Doctor Immediately</h3>
+            <p class="text-gray-600 text-base leading-relaxed">
+              You can speak to a doctor via the in-app video option at any time.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<!-- ===============Access Welness Section===================== -->
+<section class="flex flex-col md:flex-row items-center px-6 md:px-16 py-12 space-y-8 md:space-y-0">
+    <!-- Left Image -->
+   
+    <div class="w-full md:w-1/2 text-center md:text-left px-4">
+      <h2 class="text-2xl md:text-4xl font-bold text-gray-900 leading-snug">
+        Access to Wellness <span class="text-blue-600">Programs</span>
+      </h2>
+      <p class="text-gray-600 mt-4 text-lg leading-relaxed">
+        You can consult with a clinical psychologist for all mental health issues including depression, anxiety, suicidal tendency, panic attack and lots more.
+      </p>
+
+      <!-- Feature List -->
+      <div class="mt-8 space-y-8">
+        <div class="flex items-start space-x-5">
+          <span class="p-4 border border-teal-500 rounded-full flex items-center justify-center text-2xl">
+            💬
+          </span>
+          <div>
+            <h3 class="font-semibold text-gray-900 text-lg">Speak with a Pschologist</h3>
+            <p class="text-gray-600 text-base leading-relaxed">
+              Counselling for your mental health, wellness and psychological wellbeing
+            </p>
+          </div>
+        </div>
+
+        <div class="flex items-start space-x-5">
+          <span class="p-4 border border-teal-500 rounded-full flex items-center justify-center text-2xl">
+            ❤️
+          </span>
+          <div>
+            <h3 class="font-semibold text-gray-900 text-lg">Customised Meal Plans</h3>
+            <p class="text-gray-600 text-base leading-relaxed">
+              We provide training for employees to promote mental wellness and productivity
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="w-full md:w-1/2 flex justify-center">
+      <img src="https://healthconnect247.com/wp-content/uploads/2021/11/8.png" alt="Doctor Consultation" class="max-w-full h-auto">
+    </div>
+
+    <!-- Right Content -->
+  </section>
+
   <div>
         <TawkToChat />
         <router-view />
@@ -206,6 +300,7 @@
   import Healthsymp from '@/Components/Healthsymp.vue';
   import Carousel from "@/Components/Carousel.vue"
   import Team from '@/Components/Team.vue';
+  import Organizationservices from "@/Components/Organizationservices.vue";
   
   export default {
     components: {
@@ -214,6 +309,7 @@
       Customfooter,
       Carousel,
       Team,
+      Organizationservices,
     },
     data() {
       return {

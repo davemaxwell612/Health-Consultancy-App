@@ -15,6 +15,8 @@ use  \App\Http\Controllers\ServicesController;
 use  \App\Http\Controllers\PricingController;
 use  \App\Http\Controllers\AboutUsController;
 use  \App\Http\Controllers\ContactUsController;
+use  \App\Http\Controllers\FaqController;
+use  \App\Http\Controllers\PrivacyPolicyController;
 use Illuminate\Support\Facades\Artisan;
 use Inertia\Inertia;
 
@@ -34,6 +36,9 @@ Route::get('/services', [ServicesController::class, 'index'])->name('services.in
 Route::get('/pricing', [PricingController::class, 'index'])->name('pricing.index');
 Route::get('/about', [AboutUsController::class, 'index'])->name('about.index');
 Route::get('/contact', [ContactUsController::class, 'index'])->name('contact.index');
+Route::get('/faq', [faqController::class, 'faq'])->name('faq.index');
+Route::get('/privacypolicy', [PrivacyPolicyController::class, 'privacypolicy'])->name('privacypolicy.index');
+
 
 
 Route::get('/dashboard', function () {

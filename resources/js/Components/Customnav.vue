@@ -99,6 +99,9 @@
                   <Link href="/services" class="block text-gray-900 dark:text-white hover:text-blue-700 dark:hover:text-blue-500">Services</Link>
               </li>
               <li>
+                  <Link href="/pricing" class="block text-gray-900 dark:text-white hover:text-blue-700 dark:hover:text-blue-500">Pricing</Link>
+              </li>
+              <li>
                   <Link href="/about" class="block text-gray-900 dark:text-white hover:text-blue-700 dark:hover:text-blue-500">About Us</Link>
               </li>
               <li>

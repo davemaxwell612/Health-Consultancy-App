@@ -24,7 +24,7 @@ onUnmounted(() => {
 
 <template>
     <div>
-        <p class="text-center text-gray-500">Live chat is enabled.</p>
+        
     </div>
 </template>
 

@@ -28,7 +28,7 @@
                     <div class="w-1/2 md:w-1/4">
                         <h3 class="text-white font-semibold">Contact Information</h3>
                         <ul class="mt-4 space-y-2">
-                            <li><Link href="/marketing" class="hover:underline">Marketing</Link></li>
+                            <li><Link href="/faq" class="hover:underline">FAQs</Link></li>
                             <li><Link href="/analytics" class="hover:underline">Analytics</Link></li>
                             <li><Link href="/automation" class="hover:underline">Automation</Link></li>
                             <li><Link href="/commerce" class="hover:underline">Commerce</Link></li>
@@ -57,14 +57,14 @@
                         <h3 class="text-white font-semibold">Legal</h3>
                         <ul class="mt-4 space-y-2">
                             <li><Link href="/terms-of-service" class="hover:underline">Terms of Service</Link></li>
-                            <li><Link href="/privacy-policy" class="hover:underline">Privacy Policy</Link></li>
+                            <li><Link href="/privacypolicy" class="hover:underline">Privacy Policy</Link></li>
                             <li><Link href="/license" class="hover:underline">License</Link></li>
                         </ul>
                     </div>
                 </div>
             </div>
             <div class="mt-12 text-center border-t border-gray-700 pt-6">
-                <p class="text-gray-400">© {{ currentYear }} Health, Inc. All rights reserved.</p>
+                <p class="text-gray-400">© {{ currentYear }} timelesshealthcare247, Inc. All rights reserved.</p>
             </div>
         </div>
     </footer>
