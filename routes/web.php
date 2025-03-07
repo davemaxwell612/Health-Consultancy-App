@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Middleware\RoleMiddleware;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\DoctorController;
@@ -8,6 +9,8 @@ use \App\Http\Controllers\AdminController;
 use  \App\Http\Controllers\PatientController;
 use  \App\Http\Controllers\AppointmentDepartmentDoctorController;
 use  \App\Http\Controllers\PatientPrescriptionController;
+use  \App\Http\Controllers\UserPlanController;
+use  \App\Http\Controllers\InvoiceController;
 use  \App\Http\Controllers\AppointmentController;
 use  \App\Http\Controllers\MedicalRecordsController;
 use  \App\Http\Controllers\PlansController;
@@ -15,6 +18,7 @@ use  \App\Http\Controllers\ServicesController;
 use  \App\Http\Controllers\PricingController;
 use  \App\Http\Controllers\AboutUsController;
 use  \App\Http\Controllers\ContactUsController;
+use App\Http\Controllers\PaystackController;
 use Illuminate\Support\Facades\Artisan;
 use Inertia\Inertia;
 
@@ -40,13 +44,41 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {
+
+//    patient links >>>>>>>>>>>
+Route::middleware(['auth', RoleMiddleware::class . ':patient,doctor,admin'])->group(function () {
+    Route::post('/patient-schedule-appointment', [PatientController::class, 'createAppointments']);
+    Route::post('/patient-lay-complain', [PatientController::class, 'submitComplain']);
+    Route::get('/patient-dashboard-overview', [PatientController::class, 'index'])->name('patient.dashboard');
+    Route::get('/patient-book-appointment', [PatientController::class, 'appointments']);
+    Route::get('/patient-my-appointments', [PatientController::class, 'fectUserAppointments']);
+    Route::get('/check-if-patient-plan-expires', [UserPlanController::class, 'getUserDashboardData']);
+    Route::get('/patient-medical-records', [MedicalRecordsController::class, 'userRecords']);
+    Route::get('/patient-medical-history', [PatientController::class, 'createMedicalHistory']);
+    Route::post('/patient-medical-history', [PatientController::class, 'saveMedicalHistory']);
+    Route::get('/patient-prescriptions', [PatientPrescriptionController::class, 'index']);
+    Route::get('/patient-billing-and-payments', [PatientController::class, 'billsAndPayments']);
+    Route::get('/patient-messages', [PatientController::class, 'fetchComplains']);
+    Route::get('/patient-messages-create', [PatientController::class, 'layComplain']);
+    Route::get('/patient-profile-settings', [PatientController::class, '']);
+    Route::get('/patient-health-tracker', [PatientController::class, '']);
+    Route::get('patient-view-reply/{user_id}/{complain_id}', [PatientController::class, 'userViewRecomendationFromDoctor']);
+    Route::get('/patient-available-plans', [PlansController::class, 'availablePlans']);
+    Route::get('/patient-choose-plan/{invoice_id}/{user_id}', [InvoiceController::class, 'index']);
+    Route::post('/patient-choose-plan/{plan_id}/{user_id}', [InvoiceController::class, 'store']);
+    Route::get('/pay', [PaystackController::class, 'index'])->name('pay');
+    Route::post('/pay', [PaystackController::class, 'redirectToGateway'])->name('paystack.redirect');
+    Route::get('/pay/callback', [PaystackController::class, 'handleGatewayCallback']);
+    Route::get('/payment/success', [PaystackController::class, 'success'])->name('payment.success');
+    Route::get('/payment/failed', [PaystackController::class, 'failed'])->name('payment.failed');
     Route::get('/patient-profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::get('/doctor-profile-and-availability', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
 
-
+// Doctor's Links >>>>>>>>>>>>>>>>>>>>>>
+Route::middleware(['auth', RoleMiddleware::class . ':doctor'])->group(function () {
 //    doctors links >>>>>>>>>>>
     Route::get('/doctor-dashboard-overview', [DoctorController::class, 'index'])->name('doctor.dashboard');
     Route::get('/doctor-appointments', [AppointmentController::class, 'index']);
@@ -59,9 +91,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/doctor-medical-records', [MedicalRecordsController::class, 'index']);
     Route::get('/doctor-update-medical-records', [MedicalRecordsController::class, 'create']);
     Route::post('/doctor-update-medical-records', [MedicalRecordsController::class, 'store']);
-
+});
 
 //    Admin >>>>>>>>>>>
+Route::middleware(['auth', RoleMiddleware::class . ':admin'])->group(function () {
+    Route::get('/admin-dashboard', [AdminController::class, 'index']);
     Route::get('/admin-add-user', [AdminController::class, 'index'])->name('admin.dashboard');
     Route::get('/create-doctor', [DoctorController::class, 'create']);
     Route::post('/add-doctor', [DoctorController::class, 'addDoctor']);
@@ -72,9 +106,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/fetch-departments', [AdminController::class, 'fetchDepartments']);
     Route::get('/create-admin', [DoctorController::class, 'createTakeALeave']);
     Route::get('/create-patient', [DoctorController::class, 'createTakeALeave']);
-
-
-    // routes/web.php
     Route::get('/run-migrations', function () {
         // Check if the user is authorized to run the migration (optional but highly recommended)
         if (auth()->user() && auth()->user()->user_role === 'admin') {
@@ -84,33 +115,6 @@ Route::middleware('auth')->group(function () {
 
         return 'Unauthorized action';
     });
-
-
-    //    patient links >>>>>>>>>>>
-    Route::post('/patient-schedule-appointment', [PatientController::class, 'createAppointments']);
-    Route::post('/patient-lay-complain', [PatientController::class, 'submitComplain']);
-    Route::get('/patient-dashboard-overview', [PatientController::class, 'index'])->name('patient.dashboard');
-    Route::get('/patient-book-appointment', [PatientController::class, 'appointments']);
-    Route::get('/patient-my-appointments', [PatientController::class, 'fectUserAppointments']);
-
-    Route::get('/patient-medical-records', [MedicalRecordsController::class, 'userRecords']);
-    Route::get('/patient-medical-history', [PatientController::class, 'createMedicalHistory']);
-    Route::post('/patient-medical-history', [PatientController::class, 'saveMedicalHistory']);
-
-
-    Route::get('/patient-prescriptions', [PatientPrescriptionController::class, 'index']);
-    Route::get('/patient-billing-and-payments', [PatientController::class, 'billsAndPayments']);
-    Route::get('/patient-messages', [PatientController::class, 'fetchComplains']);
-    Route::get('/patient-messages-create', [PatientController::class, 'layComplain']);
-    Route::get('/patient-profile-settings', [PatientController::class, '']);
-    Route::get('/patient-health-tracker', [PatientController::class, '']);
-    Route::get('patient-view-reply/{user_id}/{complain_id}', [PatientController::class, 'userViewRecomendationFromDoctor']);
-    Route::get('/patient-available-plans', [PlansController::class, 'availablePlans']);
-    Route::get('/patient-choose-plan', [PatientController::class, 'generateInvoice']);
-    Route::get('/patient-choose-plan/{plan}', [PatientController::class, 'planDetails']);
-//    Route::post('/patient-choose-plan', [PatientController::class, 'generateInvoice']);
-
-
     Route::get('/run-artisan/{command}', function ($command) {
         try {
             Artisan::call($command);
@@ -119,8 +123,6 @@ Route::middleware('auth')->group(function () {
             return "Error: " . $e->getMessage();
         }
     });
-
-
     Route::get('/run-npm/{command}', function ($command) {
         try {
             // Sanitize the command (optional but recommended)
@@ -137,5 +139,8 @@ Route::middleware('auth')->group(function () {
         }
     });
 });
+
+
+
 
 require __DIR__ . '/auth.php';

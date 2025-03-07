@@ -63,6 +63,15 @@ class DoctorController extends Controller
             'active' => true,
         ]);
         $newDoctor->save();
+        $user = User::where('id', $validatedData['sentData']['user'])->first();
+
+        $user->update([
+          'user_role' => 'doctor',
+        ]);
+
+        $user->save();
+
+
         return response()->json(['message' => 'Doctor created successfully.']);
     }
 

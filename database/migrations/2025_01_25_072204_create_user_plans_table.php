@@ -13,9 +13,15 @@ return new class extends Migration
     {
         Schema::create('user_plans', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade'); // Link to `users` table
-            $table->foreignId('plans_id')->constrained()->onDelete('cascade'); // Link to `plans` table
-            $table->foreignId('cycle_id')->constrained('billing_cycles')->onDelete('cascade'); // Link to `billing_cycles`
+            $table->foreignId('user_id')
+                ->constrained()
+                ->onDelete('cascade'); // Link to `users` table
+
+            $table->foreignId('plans_id')
+                ->constrained()
+                ->onDelete('cascade'); // Link to `plans` table
+
+            $table->integer('duration');
             $table->date('start_date'); // When the subscription starts
             $table->date('end_date'); // When the subscription ends
             $table->boolean('status')->default(true); // Status of the subscription

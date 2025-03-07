@@ -16,12 +16,18 @@ class AppointmentController extends Controller
      */
     public function index()
     {
-        $user_id = Auth::user()->id;
-        $doctor = DoctorDetails::where('user_id', $user_id)->first()->get();
-        $doctor_department = $doctor[0]->department;
-//        dd($doctor_department);
+        $user_id = Auth::user()->id; // Shorter way to get authenticated user ID
+
+        $doctor = DoctorDetails::where('user_id', $user_id)->first();
+
+        if (!$doctor) {
+            return inertia::render('Doctors/Appointments', [
+                'appointments' => []
+            ]);
+        }
+
         return inertia::render('Doctors/Appointments', [
-            'appointments' => Appointment::where('department_id', $doctor_department)->get()
+            'appointments' => Appointment::where('department_id', $doctor->department)->get()
         ]);
     }
 

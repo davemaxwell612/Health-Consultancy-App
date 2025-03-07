@@ -17,6 +17,13 @@ class User extends Authenticatable
      *
      * @var list<string>
      */
+
+    // Define role constants
+    public const ROLE_PATIENT = 'patient';
+    public const ROLE_DOCTOR = 'doctor';
+    public const ROLE_ADMIN = 'admin';
+
+
     protected $fillable = [
         'surname',
         'otherNames',
@@ -33,6 +40,33 @@ class User extends Authenticatable
         'country',
         'state',
     ];
+
+
+    public function isAdmin()
+    {
+        return $this->user_role === self::ROLE_ADMIN;
+    }
+
+    public function isDoctor()
+    {
+        return $this->user_role === self::ROLE_DOCTOR;
+    }
+
+    public function isPatient()
+    {
+        return $this->user_role === self::ROLE_PATIENT;
+    }
+
+
+    public function currentPlan()
+    {
+        return $this->hasOne(UserPlan::class)->latestOfMany();
+    }
+
+    public function getPlanStatusAttribute()
+    {
+        return $this->currentPlan?->status;
+    }
 
 
     /**

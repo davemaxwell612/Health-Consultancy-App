@@ -18,13 +18,26 @@ return new class extends Migration
             $table->foreignId('user_id')
                 ->constrained('users')
                 ->onDelete('cascade');
+            $table->foreignId('plan_id')
+                ->constrained('plans')
+                ->onDelete('cascade');
 
-            $table->date('invoice_date');
+            $table->date('generated_at');
+            $table->integer('duration');
             $table->date('due_date');
             $table->decimal('amount', 10, 2);
             $table->enum('status',
                 ['unpaid', 'paid', 'overdue'])
                 ->default('unpaid');
+
+
+            $table->string('reference')->nullable();
+            $table->string('payment_method')->nullable();
+            $table->string('currency')->default('NGN');
+            $table->timestamp('paid_at')->nullable();
+
+
+
             $table->timestamps();
         });
     }

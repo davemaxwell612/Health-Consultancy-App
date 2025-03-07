@@ -22,16 +22,17 @@
             <!-- Render Sidebars Based on Role -->
             <AdminSideBar
                 :adminLinks="adminLinks"
-                v-if="$page.props.auth.user.user_role === 'admin'" />
+                v-if="$page.props.auth.user.user_role === 'admin'"/>
 
             <DoctorsSideBar
                 :doctorLinks="doctorLinks"
-                v-else-if="$page.props.auth.user.user_role === 'doctor'" />
+                v-else-if="$page.props.auth.user.user_role === 'doctor'"/>
 
             <PatientSideBar
                 :patientLinks="patientLinks"
-                v-else />
-            <Logout />
+                :planHasExpired="planHasExpired"
+                v-else/>
+            <Logout/>
         </div>
 
         <!-- Sidebar Toggle Button (Visible on Mobile/Tablet Only) -->
@@ -44,11 +45,15 @@
             <span v-else>✕</span>
         </button>
 
+
         <!-- Main Content -->
         <div
-            class="px-3 py-12 bg-gray-100 w-full transition-all duration-300"
+            class="relative px-3 py-12 bg-gray-100 w-full transition-all duration-300"
             :class="{'ml-0': !isSidebarOpen && !isLargeScreen, 'lg:ml-72': true}"
         >
+            <PlanHasExpiredNotification
+            v-show="planHasExpired === 0"
+            />
             <slot></slot>
         </div>
     </div>
@@ -59,9 +64,47 @@ import Logout from "@/Components/Logout.vue";
 import DoctorsSideBar from "@/Components/DoctorsSideBar.vue";
 import PatientSideBar from "@/Components/PatientSideBar.vue";
 import AdminSideBar from "@/Components/AdminSideBar.vue";
-import { ref, onMounted } from "vue";
+import {ref, onMounted} from "vue";
+import axios from "axios";
+import Plans from "@/Components/Plans.vue";
+import PlanHasExpiredNotification from "@/Components/PlanHasExpiredNotification.vue";
+
 let widthHight = ref('w-3 h-3')
 let strokeColor = ref('white')
+const doctorLinks = ref([
+    {
+        name: "doctor-dashboard-overview",
+        active: false,
+        icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v6.75h6.75V3H3.75zm0 10.5V21h6.75v-6.75H3.75zm10.5-10.5V21h6.75V3h-6.75zM14.25 14.25v6.75h6.75v-6.75h-6.75z" /></svg>`
+    },
+    {
+        name: "doctor-appointments",
+        active: false,
+        icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M6 3.75V6M18 3.75V6M3 10.5h18M6.75 10.5v9.75m10.5-9.75v9.75m-5.25-9.75v9.75" /></svg>`
+    },
+    // {
+    //     name: "doctor-prescription-management",
+    //     active: false,
+    //     icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 3.75h9M7.5 3.75v16.5m9-16.5v16.5M3 9h18M3 15h18" /></svg>`
+    // },
+    {
+        name: "doctor-messages",
+        active: false,
+        icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 5.25h16.5m-16.5 6h16.5m-16.5 6h16.5" /></svg>`
+    },
+    {
+        name: "doctor-medical-records",
+        active: false,
+        icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="${strokeColor.value}" :class="${widthHight.value}">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-2M9 3a3 3 0 1 1 6 0M9 3h6M9 8h6M9 12h3" />
+    </svg>`
+    },
+    {
+        name: "doctor-profile-and-availability",
+        active: false,
+        icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3.75A5.25 5.25 0 0117.25 9v6a5.25 5.25 0 01-10.5 0V9A5.25 5.25 0 0112 3.75z" /></svg>`
+    }
+]);
 const patientLinks = ref([
     {
         name: "patient-dashboard-overview",
@@ -112,44 +155,6 @@ const patientLinks = ref([
         name: "patient-profile",
         active: false,
         icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="${strokeColor.value}" :class="${widthHight.value}"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3.75A5.25 5.25 0 0117.25 9v6a5.25 5.25 0 01-10.5 0V9A5.25 5.25 0 0112 3.75z" /></svg>`
-    },
-    // {
-    //     name: "patient-health-tracker",
-    //     icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="${strokeColor.value}" :class="${widthHight.value}"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12h18M3 16.5h18M3 7.5h18" /></svg>`
-    // }
-]);
-const doctorLinks = ref([
-    {
-        name: "doctor-dashboard-overview",
-        active: false,
-        icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v6.75h6.75V3H3.75zm0 10.5V21h6.75v-6.75H3.75zm10.5-10.5V21h6.75V3h-6.75zM14.25 14.25v6.75h6.75v-6.75h-6.75z" /></svg>`
-    },
-    {
-        name: "doctor-appointments",
-        active: false,
-        icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M6 3.75V6M18 3.75V6M3 10.5h18M6.75 10.5v9.75m10.5-9.75v9.75m-5.25-9.75v9.75" /></svg>`
-    },
-    // {
-    //     name: "doctor-prescription-management",
-    //     active: false,
-    //     icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 3.75h9M7.5 3.75v16.5m9-16.5v16.5M3 9h18M3 15h18" /></svg>`
-    // },
-    {
-        name: "doctor-messages",
-        active: false,
-        icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 5.25h16.5m-16.5 6h16.5m-16.5 6h16.5" /></svg>`
-    },
-    {
-        name: "doctor-medical-records",
-        active: false,
-        icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="${strokeColor.value}" :class="${widthHight.value}">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M9 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-2M9 3a3 3 0 1 1 6 0M9 3h6M9 8h6M9 12h3" />
-    </svg>`
-    },
-    {
-        name: "doctor-profile-and-availability",
-        active: false,
-        icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3.75A5.25 5.25 0 0117.25 9v6a5.25 5.25 0 01-10.5 0V9A5.25 5.25 0 0112 3.75z" /></svg>`
     }
 ]);
 const adminLinks = ref([
@@ -189,9 +194,19 @@ const adminLinks = ref([
         icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" /></svg>`
     }
 ]);
-// Reactive state to control sidebar visibility
 const isSidebarOpen = ref(false);
 const isLargeScreen = ref(false);
+
+let planHasExpired = ref('')
+const checkIfPlanExpires = () => {
+    axios.get('/check-if-patient-plan-expires')
+        .then(response => {
+            if (response.data.plan_details.status === 0) {
+                planHasExpired.value = response.data.plan_details.status
+            }
+        })
+}
+checkIfPlanExpires();
 
 // Function to toggle sidebar visibility
 const toggleSidebar = () => {
@@ -208,7 +223,8 @@ const checkScreenSize = () => {
     }
 };
 
-// Add event listener to handle window resizing
+
+
 onMounted(() => {
     checkScreenSize();
     window.addEventListener("resize", checkScreenSize);

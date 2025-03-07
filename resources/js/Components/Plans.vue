@@ -21,9 +21,7 @@
             </button>
             </div>
         </div>
-
-        <ResponseMessage :response="response" :class="bg"/>
-
+<!--        <ResponseMessage :response="response" :class="bg"/>-->
         <div class="flex justify-center items-center flex-wrap gap-6">
             <div
                 v-for="(plan, index) in allPlans"
@@ -47,7 +45,7 @@
                 </ul>
                 <button
 
-                    @click="choosePlan(plan, index)"
+                    @click="choosePlan(plan, index, $page.props.auth.user.id)"
                     class="bg-teal-500 text-white font-semibold rounded-lg py-2 px-4 mt-6 hover:bg-teal-600 focus:outline-none focus:ring-4 focus:ring-teal-200 transition duration-300">
                     Choose Plan
                 </button>
@@ -87,7 +85,7 @@ let updatePlanPeriod = (period) => {
 let response = ref()
 let bg = ref()
 
-let choosePlan = (plan, index) => {
+let choosePlan = (plan, index, user_id) => {
     const updatedPlan = {
         ...plan,
         billing_cycle: [{
@@ -97,12 +95,12 @@ let choosePlan = (plan, index) => {
         }]
     };
 
-    const queryString = encodeURIComponent(JSON.stringify(updatedPlan));
-
-    axios.get(`/patient-choose-plan?plan=${queryString}`)
+    axios.post(`/patient-choose-plan/${plan.id}/${user_id}`, {updatedPlan})
         .then(res => {
             if (res.data.message) {
                 response.value = res.data.message;
+                window.location.href =  res.data.url;
+                // window.location.href = response.data.authorization_url;
                 bg.value = 'bg-green-400'
                 setTimeout(() => {
                     response.value = '';

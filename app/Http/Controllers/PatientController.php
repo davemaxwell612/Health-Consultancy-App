@@ -205,43 +205,6 @@ class PatientController extends Controller
         ]);
     }
 
-    public function generateInvoice(Request $request)
-    {
-
-        $plan = json_decode($request->query('plan'), true);
-        return inertia::render('Patient/PaymentPage', [
-
-            'plan' => $plan,
-        ]);
-        dd($plan['billing_cycle']);
-//        return response()->json(['message' => 'Plan received', 'data' => $plan]);
-//        dd($request->plan);
-//        $request->validate([
-//            'amount' => 'required|numeric|min:0',
-//            'billing_cycle' => 'required|integer|in:3,6,12',
-//        ]);
-        // Generate a unique invoice number
-        do {
-            $invoiceNumber = mt_rand(100000, 999999);
-        } while (Invoice::where('invoice_number', $invoiceNumber)->exists());
-
-        // Set invoice date (current date and time)
-        $invoiceDate = now();
-
-        // Calculate due date based on billing cycle
-        $dueDate = Carbon::now()->addMonths($request->plan['billing_cycle'][0]['duration']);
-
-        // Create the invoice
-        $invoice = Invoice::create([
-            'user_id' => Auth::user()->id,
-            'invoice_number' => $invoiceNumber,
-            'invoice_date' => $invoiceDate,
-            'due_date' => $dueDate,
-            'amount' => $request->plan['billing_cycle'][0]['price'],
-            'status' => 'unpaid',
-        ]);
-    }
-
     /**
      * Store a newly created resource in storage.
      */

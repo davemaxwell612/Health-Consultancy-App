@@ -18,35 +18,24 @@ class PlansController extends Controller
      */
     public function index(Request $request)
     {
-       if (!Auth::check()){
+        if (!Auth::check()) {
 
 //       return response()->json(["message" => "Please You need to login before you can purchase a plan"]);
-           return inertia::render('Auth/Login', [
-               'messege' => 'Please You need to login before you can purchase a plan'
-           ]);
-       }else{
-       $userPlan = UserPlan::create([
-                'user_id' =>  Auth::user()->id,
-                'plans_id' =>  $request['plan']['id'],
-                'cycle_id' =>  $request['plan']['billing_cycle'][0]['id'],
-                'start_date' =>  Carbon::now()->toDateTimeString(),
-                'end_date' =>  Carbon::now()->addMonth()->toDateString(),
-                'status' =>  true,
-        ]);
-       return response()->json(["message" => "You've Successfully Purchase the" .$request['plan']['id']. "plan" ], 201);
+            return inertia::render('Auth/Login', [
+                'messege' => 'Please You need to login before you can purchase a plan'
+            ]);
+        } else {
+            $userPlan = UserPlan::create([
+                'user_id' => Auth::user()->id,
+                'plans_id' => $request['plan']['id'],
+                'cycle_id' => $request['plan']['billing_cycle'][0]['id'],
+                'start_date' => Carbon::now()->toDateTimeString(),
+                'end_date' => Carbon::now()->addMonth()->toDateString(),
+                'status' => true,
+            ]);
+            return response()->json(["message" => "You've Successfully Purchase the" . $request['plan']['id'] . "plan"], 201);
 
-       }
-
-
-
-
-
-
-
-
-
-
-
+        }
 
 
     }
@@ -56,20 +45,32 @@ class PlansController extends Controller
      */
     public function create()
     {
-       return inertia::render('Admin/CreatePlan', [
+        return inertia::render('Admin/CreatePlan', [
 
 
         ]);
     }
+
     public function availablePlans()
     {
+        $user = auth()->user();
         // Fetch plans with their billing cycles and features
         $plans = Plans::with(['billingCycle', 'features'])->get();
+        $plan_details = UserPlan::where('user_id', $user->id)
+            ->with('plan', 'user')
+            ->first();
 
-        // Return the Inertia view and pass the plans as a prop
-        return inertia::render('Patient/AvailablePlans', [
-            'plans' => $plans,
-        ]);
+
+        if ($plan_details->status === 1) {
+            return inertia::render('Patient/ActivePlan', [
+                'plan_details' => $plan_details,
+            ]);
+        } else {
+            return inertia::render('Patient/AvailablePlans', [
+                'plans' => $plans,
+            ]);
+        }
+
     }
 
     /**
@@ -90,7 +91,7 @@ class PlansController extends Controller
 //        dd($validatedData['form']['features']);
         $plan = Plans::create([
             'name' => $validatedData['form']['title'],
-            'description' =>$validatedData['form']['description'],
+            'description' => $validatedData['form']['description'],
         ]);
 
         // Add a default billing cycle (optional)

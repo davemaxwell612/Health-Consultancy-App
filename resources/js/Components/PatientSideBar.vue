@@ -9,19 +9,16 @@
         <AuthLinks
             v-for="patientLink in patientLinks"
             :link="patientLink"
+            :planHasExpired="planHasExpired"
         />
     </div>
 </template>
 
 <script setup>
-import {Link} from '@inertiajs/vue3';
 import AuthLinks from "@/Components/AuthLinks.vue";
-import {ref} from "vue"; // If you're using Inertia.js
 let props = defineProps({
     patientLinks: Array,
+    planHasExpired: Number
 })
 </script>
 
-<style scoped>
-/* Add any custom styles here if needed */
-</style>

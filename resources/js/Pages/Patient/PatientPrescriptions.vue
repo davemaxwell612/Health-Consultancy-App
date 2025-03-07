@@ -1,10 +1,9 @@
 <template>
     <AuthenticatedLayout>
+        <p v-if="recomendations.length">Below are the recommendations to your complain that reads:</p>
+        <p v-if="recomendations.length"><strong>{{ recomendations[0].complain.message }}</strong></p>
 
-        <p>Below are the recommendations to your complain that reads:</p>
-        <p><strong>{{ recomendations[0].complain.message }}</strong></p>
         <table class="w-full border-collapse border border-gray-300">
-
             <thead class="bg-gray-200">
             <tr>
                 <th class="border p-2">S/N</th>
@@ -15,23 +14,20 @@
             </tr>
             </thead>
             <tbody>
+            <tr v-if="!recomendations.length">
+                <td colspan="5" class="border p-2 text-center text-gray-500">No prescriptions available</td>
+            </tr>
             <tr v-for="(recomendation, index) in recomendations" :key="index" :class="recomendation.color">
                 <td class="border p-2 text-center">{{ index + 1 }}</td>
-
-                <!-- Complaint Column -->
                 <td class="border p-2">
-                    <p class="w-full p-1">{{ recomendation.patient_complain.message || 'N/A' }}</p>
+                    <p class="w-full p-1">{{ recomendation.patient_complain?.message || 'N/A' }}</p>
                 </td>
                 <td class="border p-2">
                     <p class="w-full p-1">{{ recomendation.complain || 'N/A' }}</p>
                 </td>
-
-                <!-- Medication Column -->
                 <td class="border p-2">
                     <p class="w-full p-1">{{ recomendation.medication || 'N/A' }}</p>
                 </td>
-
-                <!-- Dosage Column -->
                 <td class="border p-2">
                     <p class="w-full p-1">{{ recomendation.dosage || 'N/A' }}</p>
                 </td>
@@ -39,8 +35,8 @@
             </tbody>
         </table>
     </AuthenticatedLayout>
-
 </template>
+
 
 <script setup>
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
