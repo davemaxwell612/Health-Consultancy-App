@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\RoleMiddleware;
 use Illuminate\Foundation\Application;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\DoctorController;
 use \App\Http\Controllers\AdminController;
@@ -19,7 +20,8 @@ use  \App\Http\Controllers\PricingController;
 use  \App\Http\Controllers\AboutUsController;
 use  \App\Http\Controllers\ContactUsController;
 use App\Http\Controllers\PaystackController;
-use Illuminate\Support\Facades\Artisan;
+use  \App\Http\Controllers\FaqController;
+use  \App\Http\Controllers\PrivacyPolicyController;
 use Inertia\Inertia;
 
 Route::get('/', function () {
@@ -33,11 +35,13 @@ Route::get('/', function () {
 
 
 //guest Links
-
 Route::get('/services', [ServicesController::class, 'index'])->name('services.index');
 Route::get('/pricing', [PricingController::class, 'index'])->name('pricing.index');
 Route::get('/about', [AboutUsController::class, 'index'])->name('about.index');
 Route::get('/contact', [ContactUsController::class, 'index'])->name('contact.index');
+Route::get('/faq', [faqController::class, 'faq'])->name('faq.index');
+Route::get('/privacypolicy', [PrivacyPolicyController::class, 'privacypolicy'])->name('privacypolicy.index');
+
 
 
 Route::get('/dashboard', function () {
@@ -79,7 +83,6 @@ Route::middleware(['auth', RoleMiddleware::class . ':patient,doctor,admin'])->gr
 
 // Doctor's Links >>>>>>>>>>>>>>>>>>>>>>
 Route::middleware(['auth', RoleMiddleware::class . ':doctor'])->group(function () {
-//    doctors links >>>>>>>>>>>
     Route::get('/doctor-dashboard-overview', [DoctorController::class, 'index'])->name('doctor.dashboard');
     Route::get('/doctor-appointments', [AppointmentController::class, 'index']);
     Route::get('/doctor-take-a-leave', [DoctorController::class, 'createTakeALeave']);
