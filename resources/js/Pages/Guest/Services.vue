@@ -37,9 +37,9 @@
               />
             </svg>
           </div>
-          <h3 class="text-xl font-semibold text-gray-800">Service Title Here</h3>
+          <h3 class="text-xl font-semibold text-gray-800">24/7 Access</h3>
           <p class="text-gray-500 mt-4">
-              Service description will go here. A brife description of the the service.
+            Talk to our medical practitioners anytime you need support.
           </p>
         </div>
 
@@ -65,9 +65,9 @@
               />
             </svg>
           </div>
-          <h3 class="text-xl font-semibold text-gray-800">Service Title Here</h3>
+          <h3 class="text-xl font-semibold text-gray-800">Follow-ups & Support</h3>
           <p class="text-gray-500 mt-4">
-              Service description will go here. A brife description of the the service.
+            Get regular check-ins and health monitoring.
           </p>
         </div>
 
@@ -93,9 +93,9 @@
               />
             </svg>
           </div>
-          <h3 class="text-xl font-semibold text-gray-800">Service Title Here</h3>
+          <h3 class="text-xl font-semibold text-gray-800">Dedicated Care</h3>
           <p class="text-gray-500 mt-4">
-            Service description will go here. A brife description of the the service.
+            Access professionals for personalized healthcare.
           </p>
         </div>
       </div>
