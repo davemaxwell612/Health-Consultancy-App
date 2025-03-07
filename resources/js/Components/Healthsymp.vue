@@ -32,15 +32,15 @@ export default {
   data() {
     return {
       healthConditions: [
-        { name: "Respiratory Health", image: "https://static.vecteezy.com/system/resources/previews/015/409/919/non_2x/elegant-pretty-woman-in-business-suit-with-badge-woman-business-avatar-profile-picture-illustration-isolated-vector.jpg" },
-        { name: "Digestive Wellness", image: "https://static.vecteezy.com/system/resources/previews/006/898/691/non_2x/avatar-face-icon-female-social-profile-of-business-woman-woman-portrait-support-service-call-center-illustration-vector.jpg" },
-        { name: "Skin Care", image: "https://static.vecteezy.com/system/resources/previews/006/898/691/non_2x/avatar-face-icon-female-social-profile-of-business-woman-woman-portrait-support-service-call-center-illustration-vector.jpg" },
-        { name: "Infectious Diseases", image: "https://static.vecteezy.com/system/resources/previews/006/898/691/non_2x/avatar-face-icon-female-social-profile-of-business-woman-woman-portrait-support-service-call-center-illustration-vector.jpg" },
-        { name: "Women's Health", image: "https://static.vecteezy.com/system/resources/previews/006/898/691/non_2x/avatar-face-icon-female-social-profile-of-business-woman-woman-portrait-support-service-call-center-illustration-vector.jpg" },
-        { name: "Lifestyle & Wellness", image: "https://static.vecteezy.com/system/resources/previews/006/898/691/non_2x/avatar-face-icon-female-social-profile-of-business-woman-woman-portrait-support-service-call-center-illustration-vector.jpg" },
-        { name: "Health, Diet & Exercise", image: "https://static.vecteezy.com/system/resources/previews/006/898/691/non_2x/avatar-face-icon-female-social-profile-of-business-woman-woman-portrait-support-service-call-center-illustration-vector.jpg" },
-        { name: "Musculoskeletal Health", image: "https://static.vecteezy.com/system/resources/previews/006/898/691/non_2x/avatar-face-icon-female-social-profile-of-business-woman-woman-portrait-support-service-call-center-illustration-vector.jpg" },
-        { name: "Chronic Conditions", image: "https://static.vecteezy.com/system/resources/previews/006/898/691/non_2x/avatar-face-icon-female-social-profile-of-business-woman-woman-portrait-support-service-call-center-illustration-vector.jpg" },
+        { name: "Respiratory Health", image: "https://i.ibb.co/LmS20Sv/Respiratory-health.png" },
+        { name: "Digestive Wellness", image: "https://i.ibb.co/d4PKp5Gp/Digestive-welness.png" },
+        { name: "Skin Care", image: "https://i.ibb.co/ksjjbnYw/Skin-rash-7690910.png" },
+        { name: "Infectious Diseases", image: "https://i.ibb.co/TxmmXk47/infectous-deseas-3734017.png" },
+        { name: "Women's Health", image: "https://i.ibb.co/sJw3jYkg/Women-health-check-2463946.png" },
+        { name: "Lifestyle & Wellness", image: "https://i.ibb.co/6R2PRwm9/healthy-7587309.png" },
+        { name: "Health, Diet & Exercise", image: "https://i.ibb.co/9mwYkG0G/wellness-program-17385049.png" },
+        { name: "Musculoskeletal Health", image: "https://i.ibb.co/hFM5cJMz/oblique-6583977.png" },
+        { name: "Chronic Conditions", image: "https://i.ibb.co/HDSjWzBj/illness-13067918.png" },
       ],
     };
   },

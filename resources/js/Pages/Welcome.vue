@@ -13,7 +13,7 @@
     >
       <div class="max-w-7xl mx-auto text-center">
         <h1 class="text-3xl md:text-4xl font-extrabold text-gray-800">
-          Welcome to <span class="text-teal-500">Timeless:</span> Your Health, Simplified
+          Welcome to <span class="text-blue-500">Timeless:</span> Your Health, Simplified
         </h1>
         <p class="mt-4 text-lg text-gray-600">
           At Timeless, we bring healthcare to your fingertips. Our telemedicine app connects you with certified doctors, therapists, and healthcare professionals anytime, anywhere.
@@ -61,7 +61,7 @@
   
       <div class="mt-16 text-center">
         <Link href="/register"
-            class="w-full sm:w-auto inline-block bg-teal-500 text-white text-lg font-medium py-3 px-6 rounded-full shadow-md hover:bg-teal-600 transition">
+            class="w-full sm:w-auto inline-block bg-blue-500 text-white text-lg font-medium py-3 px-6 rounded-full shadow-md hover:bg-teal-600 transition">
           Get Started Today
         </Link>
       </div>
@@ -208,18 +208,7 @@
 
       <!-- Feature List -->
       <div class="mt-8 space-y-8">
-        <div class="flex items-start space-x-5">
-          <span class="p-4 border border-teal-500 rounded-full flex items-center justify-center text-2xl">
-            📞
-          </span>
-          <div>
-            <h3 class="font-semibold text-gray-900 text-lg">Unlimited Toll-Free Calls</h3>
-            <p class="text-gray-600 text-base leading-relaxed">
-              You can speak to a doctor as many times as you wish without spending airtime.
-            </p>
-          </div>
-        </div>
-
+        
         <div class="flex items-start space-x-5">
           <span class="p-4 border border-teal-500 rounded-full flex items-center justify-center text-2xl">
             🎥
@@ -281,7 +270,7 @@
 
     <!-- Right Content -->
   </section>
-
+    
   <div>
         <TawkToChat />
         <router-view />

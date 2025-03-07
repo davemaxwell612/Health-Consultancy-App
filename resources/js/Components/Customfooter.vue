@@ -29,9 +29,9 @@
                         <h3 class="text-white font-semibold">Contact Information</h3>
                         <ul class="mt-4 space-y-2">
                             <li><Link href="/faq" class="hover:underline">FAQs</Link></li>
-                            <li><Link href="/analytics" class="hover:underline">Analytics</Link></li>
-                            <li><Link href="/automation" class="hover:underline">Automation</Link></li>
-                            <li><Link href="/commerce" class="hover:underline">Commerce</Link></li>
+                            <li><Link href="https://web.facebook.com/profile.php?id=61573695332609" class="hover:underline">Facebook</Link></li>
+                            <li><Link href="/" class="hover:underline">Instagram</Link></li>
+                            <li><Link href="/" class="hover:underline">x (Twitter)</Link></li>
                         </ul>
                     </div>
                     <div class="w-1/2 md:w-1/4">

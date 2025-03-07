@@ -47,43 +47,43 @@
             name: "Individuals",
             title: "Personalized Healthcare Services",
             description: "Get direct access to medical consultations, wellness programs, and health monitoring tailored to your needs.",
-            image: ""
+            image: "https://i.ibb.co/9mfrZG9f/Individual.jpg"
           },
           {
             name: "Partners",
             title: "Partner Healthcare Services",
             description: "Get direct access to medical consultations, wellness programs, and health monitoring tailored to your needs.",
-            image: ""
+            image: "https://i.ibb.co/vCPW5VvV/Employers.jpg"
           },
           {
             name: "Family",
             title: "Family Care Services",
             description: "Enabling telecom providers to integrate healthcare services into their digital ecosystem.",
-            image: ""
+            image: "https://i.ibb.co/sYm31hW/Familycare.jpg"
           },
           {
             name: "Employers",
             title: "Corporate Healthcare Solutions",
             description: "We provide comprehensive healthcare services for employees to enhance productivity and well-being.",
-            image: ""
+            image: "https://i.ibb.co/g8KcnG0/employers1.jpg"
           },
           {
             name: "HMO",
             title: "Managed Care for Organizations",
             description: "Our platform consolidates insurance efforts, helping HMOs optimize client retention and control medical loss ratios.",
-            image: ""
+            image: "https://i.ibb.co/GQ065bBD/HMO.png"
           },
           {
             name: "Governments",
             title: "Public Health Initiatives",
             description: "We collaborate with government agencies to provide accessible healthcare solutions for citizens.",
-            image: ""
+            image: "https://i.ibb.co/YFYTzmTJ/organisation-care.jpg"
           },
           {
             name: "NGOs",
             title: "Healthcare Support for NGOs",
             description: "We partner with NGOs to provide medical assistance and healthcare programs to communities in need.",
-            image: ""
+            image: "https://i.ibb.co/Lz2C4Q5J/Ngos.jpg"
           }
           
         ]
