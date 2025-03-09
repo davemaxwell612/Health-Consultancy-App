@@ -61,7 +61,7 @@ class PlansController extends Controller
             ->first();
 
 
-        if ($plan_details->status === 1) {
+        if ($plan_details && $plan_details->status === 1) {
             return inertia::render('Patient/ActivePlan', [
                 'plan_details' => $plan_details,
             ]);

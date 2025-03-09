@@ -4,7 +4,10 @@
             <h1 class="text-2xl font-bold mb-4">Medical Records Management</h1>
 
             <form @submit.prevent="submitForm">
-                <!-- Patient Name -->
+                <ResponseMessage
+                :response="response"
+                :class="bg"
+                />
                 <!-- Search Box -->
                 <div class="relative">
                     <label for="search" class="block text-sm font-medium text-gray-700">Search User:</label>
@@ -63,7 +66,7 @@
                 <div class="mb-4">
                     <label class="block text-sm font-medium text-gray-700">Test Results</label>
                     <textarea
-                        v-model="form.test_results"
+                        v-model="form.test_result"
                         class="w-full h-24 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-teal-500 focus:border-teal-500"
                         placeholder="Enter test results"
                     ></textarea>
@@ -73,7 +76,7 @@
                 <div class="mb-4">
                     <label class="block text-sm font-medium text-gray-700">Additional Notes</label>
                     <textarea
-                        v-model="form.notes"
+                        v-model="form.extra_notes"
                         class="w-full h-24 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-teal-500 focus:border-teal-500"
                         placeholder="Enter any additional notes"
                     ></textarea>
@@ -97,16 +100,25 @@
 import {computed, ref} from "vue";
 import axios from "axios";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
+import ResponseMessage from "@/Components/ResponseMessage.vue";
 
 const form = ref({
     diagnosis: "",
     medications: "",
-    test_results: "",
+    test_result: "",
     notes: "",
     conducted_on: ""
 });
 
-
+const resetForm = () => {
+    form.value = {
+        diagnosis: "",
+        medications: "",
+        test_result: "",
+        extra_notes: "",
+        conducted_on: "",
+    };
+};
 let props = defineProps({
     users: Array,
 })
@@ -117,7 +129,7 @@ let department = ref('');
 let selectedUser = ref('');
 let response = ref('')
 let patient =  ref('');
-
+let bg = ref('')
 
 const filteredUsers = computed(() => {
     return props.users.filter(user => user.username.toLowerCase().includes(searchQuery.value.toLowerCase()));
@@ -136,8 +148,16 @@ const submitForm = () => {
         ...form.value,
     }
     axios.post("/doctor-update-medical-records", data)
-        .then(response => {
-            alert("Medical record saved successfully!");
+        .then(res => {
+            if (res.status === 201){
+                response.value = res.data.message
+                bg.value = 'bg-green-500'
+                setTimeout(()=>{
+                    response.value = '';
+                    bg.value ='';
+                }, 3000)
+                resetForm()
+            }
         })
         .catch(error => {
             console.error("Error saving record:", error);

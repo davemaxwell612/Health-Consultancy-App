@@ -50,7 +50,7 @@ Route::get('/dashboard', function () {
 
 
 //    patient links >>>>>>>>>>>
-Route::middleware(['auth', RoleMiddleware::class . ':patient,doctor,admin'])->group(function () {
+Route::middleware(['auth', RoleMiddleware::class . ':patient'])->group(function () {
     Route::post('/patient-schedule-appointment', [PatientController::class, 'createAppointments']);
     Route::post('/patient-lay-complain', [PatientController::class, 'submitComplain']);
     Route::get('/patient-dashboard-overview', [PatientController::class, 'index'])->name('patient.dashboard');
@@ -83,21 +83,25 @@ Route::middleware(['auth', RoleMiddleware::class . ':patient,doctor,admin'])->gr
 
 // Doctor's Links >>>>>>>>>>>>>>>>>>>>>>
 Route::middleware(['auth', RoleMiddleware::class . ':doctor'])->group(function () {
+    Route::get('/view-record/{user_id}/{record_id}', [MedicalRecordsController::class, 'viewUserRecord']);
+    Route::get('/check-if-patient-plan-expires', [UserPlanController::class, 'getUserDashboardData']);
     Route::get('/doctor-dashboard-overview', [DoctorController::class, 'index'])->name('doctor.dashboard');
+    Route::get('/doctor-view-all-users', [PatientController::class, 'viewAllUsers']);
     Route::get('/doctor-appointments', [AppointmentController::class, 'index']);
     Route::get('/doctor-take-a-leave', [DoctorController::class, 'createTakeALeave']);
     Route::get('/doctor-messages', [DoctorController::class, 'fetchDepartmentMessages']);
     Route::get('/doctor-reply/{complain_id}/{complain_user_id}', [DoctorController::class, 'creatReplyMessage']);
     Route::post('/doctor-reply/save-complaints', [DoctorController::class, 'saveComplainMedications']);
-    Route::post('/doctor-reply/save-complaints', [DoctorController::class, 'saveComplainMedications']);
     Route::post('/doctor-reschedule-appointment/{appointment_id}', [AppointmentDepartmentDoctorController::class, 'store']);
     Route::get('/doctor-medical-records', [MedicalRecordsController::class, 'index']);
     Route::get('/doctor-update-medical-records', [MedicalRecordsController::class, 'create']);
+    Route::get('/view-user/{user_id}', [PatientController::class, 'viewOneUser']);
     Route::post('/doctor-update-medical-records', [MedicalRecordsController::class, 'store']);
 });
 
 //    Admin >>>>>>>>>>>
 Route::middleware(['auth', RoleMiddleware::class . ':admin'])->group(function () {
+    Route::get('/check-if-patient-plan-expires', [UserPlanController::class, 'getUserDashboardData']);
     Route::get('/admin-dashboard', [AdminController::class, 'index']);
     Route::get('/admin-add-user', [AdminController::class, 'index'])->name('admin.dashboard');
     Route::get('/create-doctor', [DoctorController::class, 'create']);

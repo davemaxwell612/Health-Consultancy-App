@@ -3,13 +3,6 @@
 
         <div class="flex flex-col items-center justify-center bg-gray-100 p-4">
             <h1 class="text-3xl font-semibold text-teal-900 mb-4">Upcoming appointments</h1>
-            <div class="w-full flex items-center justify-end my-3">
-                <Link href="patient-book-appointment">
-                    <button class="bg-gray-900 text-white py-2 px-6 rounded-lg hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-teal-600">
-                        Book Appointment For a Patient
-                    </button>
-                </Link>
-            </div>
             <table class="table-auto w-full border-collapse border border-gray-300">
                 <thead>
                 <tr class="bg-gray-100">

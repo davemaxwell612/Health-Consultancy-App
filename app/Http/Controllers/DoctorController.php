@@ -9,6 +9,7 @@ use App\Http\Requests\UpdateDoctorRequest;
 use App\Models\DoctorDetails;
 use App\Models\doctorRecommendation;
 use App\Models\MedicalHistory;
+use App\Models\MedicalRecords;
 use App\Models\PatientComplain;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -116,16 +117,11 @@ class DoctorController extends Controller
                 'patient_id' => $request->user_id,
                 'doctor_id' => $doctor_id,
                 'patient_complain_id' => $validatedData['complaint_id'],
-//                'complain_id' => $validatedData['complaint_id'],
                 'complain' => $complaint['complain'],
                 'medication' => $complaint['medication'] ?? '',
                 'dosage' => $complaint['dosage'] ?? '',
             ]);
         }
-
-
-
-      dd($newMedication);
     }
 
 
@@ -162,13 +158,39 @@ class DoctorController extends Controller
     }
     public function creatReplyMessage(PatientComplain $complain_id, User $complain_user_id)
     {
+        $medicalHistory = MedicalHistory::where('user_id', $complain_user_id->id)->first();
+//        $medicalRecords = MedicalRecords::where('user_id', $complain_user_id->id)
+//            ->with('doctor')
+//            ->get();
 
-        $medicalHistory = MedicalHistory::where('user_id', $complain_user_id->id)->first()->get();
-           return inertia::render('Doctors/ReplyPatientMessage', [
-               'complain' => $complain_id,
-               'complained_user' => $complain_user_id,
-               'medicalHistory' => $medicalHistory,
-           ]);
+
+        $medicalRecords = MedicalRecords::orderBy('created_at', 'DESC')
+        ->where('user_id', $complain_user_id->id)
+        ->with(['user', 'doctor.user']) // Ensure doctor relation loads user
+        ->get()
+        ->map(function ($record) {
+            return [
+                'id' => $record->id,
+                'user_id' => $record->user_id,
+                'doctor_name' => $record->doctor->user->surname. ' '. $record->doctor->user->otherNames?? 'Unknown', // Extract doctor's name
+                'diagnosis' => $record->diagnosis,
+                'medications' => $record->medications,
+                'test_result' => $record->test_result,
+                'test_image' => $record->test_image,
+                'extra_notes' => $record->extra_notes,
+                'conducted_on' => $record->created_at->format('Y-m-d'),
+                'month' => $record->month,
+            ];
+        });
+
+
+
+        return inertia::render('Doctors/ReplyPatientMessage', [
+            'complain' => $complain_id,
+            'complained_user' => $complain_user_id,
+            'medicalHistory' => $medicalHistory ?? null, // Ensure it returns null if no record exists
+            'medicalRecords' => $medicalRecords ?? null, // Ensure it returns null if no record exists
+        ]);
     }
 
     /**

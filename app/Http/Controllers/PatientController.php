@@ -7,10 +7,12 @@ use App\Models\Invoice;
 use App\Models\Department;
 use App\Models\doctorRecommendation;
 use App\Models\MedicalHistory;
+use App\Models\MedicalRecords;
 use App\Models\Patient;
 use App\Http\Requests\StorePatientRequest;
 use App\Http\Requests\UpdatePatientRequest;
 use App\Models\PatientComplain;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -28,6 +30,44 @@ class PatientController extends Controller
         return inertia::render('Patient/Dashboard', []);
 
     }
+
+    public function viewAllUsers()
+    {
+        return inertia::render('Doctors/AllUsers', [
+            'users' => User::orderBy('created_at', 'ASC')->where('user_role', 'patient')->get()
+        ]);
+    }
+
+
+    public function viewOneUser(User $user_id)
+    {
+        return inertia::render('Doctors/SingleUserView', [
+            'user' => User::where('id', $user_id->id)->first() ?? null,
+            'medicalHistory' => MedicalHistory::where('user_id', $user_id->id)->first() ?? null,
+            'record' => MedicalRecords::orderBy('created_at', 'DESC')
+                ->where('user_id', $user_id->id)
+                ->with(['user', 'doctor.user']) // Ensure doctor relation loads user
+                ->get()
+                ->map(function ($record) {
+                    return [
+                        'id' => $record->id,
+                        'user_id' => $record->user_id,
+                        'doctor_name' => $record->doctor->user->surname . ' ' . $record->doctor->user->otherNames ?? 'Unknown', // Extract doctor's name
+                        'diagnosis' => $record->diagnosis,
+                        'medications' => $record->medications,
+                        'test_result' => $record->test_result,
+                        'test_image' => $record->test_image,
+                        'extra_notes' => $record->extra_notes,
+                        'conducted_on' => $record->created_at->format('Y-m-d'),
+                        'month' => $record->month,
+                    ];
+                }) ?? null,
+
+
+        ]);
+
+    }
+
 
     public function layComplain()
     {
@@ -186,13 +226,13 @@ class PatientController extends Controller
     {
 
         $user_id = Auth::user()->id;
-            try {
+        try {
             $existingHistory = MedicalHistory::where('user_id', $user_id)->first();
-            } catch (error){
+        } catch (error) {
 
-            };
+        };
         return inertia::render('Patient/MedicalHistory', [
-            'existingHistory'=> $existingHistory,
+            'existingHistory' => $existingHistory,
         ]);
     }
 

@@ -23,10 +23,6 @@
                     <td class="py-2 px-4 border">{{ record.diagnosis || 'N/A' }}</td>
                     <td class="py-2 px-4 border">{{ record.medications || 'N/A' }}</td>
                     <td class="py-2 px-4 border">{{ record.test_result || 'N/A' }}</td>
-                    <!--                <td class="py-2 px-4 border text-center">-->
-                    <!--                    <img v-if="record.test_image" :src="record.test_image" alt="Test Image" class="w-16 h-16 object-cover rounded-md shadow" />-->
-                    <!--                    <span v-else>N/A</span>-->
-                    <!--                </td>-->
                     <td class="py-2 px-4 border">{{ record.extra_notes || 'N/A' }}</td>
                     <td class="py-2 px-4 border">{{ record.conducted_on }}</td>
                     <td class="py-2 px-4 border">{{ record.doctor_name }}</td>
