@@ -23,14 +23,6 @@
 
 import GuestLayout from "@/Layouts/GuestLayout.vue";
 import {ref} from "vue";
-import {
-  PhoneIcon,
-  VideoCameraIcon,
-  ClipboardDocumentCheckIcon,
-  HeartIcon,
-  CalendarIcon,
-  PresentationChartBarIcon
-} from "@heroicons/vue/24/solid";
 
 import Plans from "@/Components/Plans.vue";
 const packages = ref([
