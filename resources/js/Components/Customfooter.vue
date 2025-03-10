@@ -29,9 +29,9 @@
                         <h3 class="text-white font-semibold">Contact Information</h3>
                         <ul class="mt-4 space-y-2">
                             <li><Link href="/faq" class="hover:underline">FAQs</Link></li>
-                            <li><Link href="https://web.facebook.com/profile.php?id=61573695332609" class="hover:underline">Facebook</Link></li>
-                            <li><Link href="/" class="hover:underline">Instagram</Link></li>
-                            <li><Link href="/" class="hover:underline">x (Twitter)</Link></li>
+                            <li> <a href="https://web.facebook.com/profile.php?id=61573695332609" target="_blank" rel="noopener noreferrer" class="hover:underline">Facebook</a></li>
+                            <li><a href="https://www.instagram.com/timeless_health_care/?igsh=YWwwOWRtdjVmYnJm#" target="_blank" class="hover:underline">Instagram</a></li>
+                            <li><a href="https://x.com/THC_247?t=3iRmpHz7ucAgqh_lniwsxQ&s=09" target="_blank" class="hover:underline">x (Twitter)</a></li>
                         </ul>
                     </div>
                     <div class="w-1/2 md:w-1/4">
@@ -54,12 +54,12 @@
                         </ul>
                     </div>
                     <div class="w-1/2 md:w-1/4">
-                        <h3 class="text-white font-semibold">Legal</h3>
+                        <!-- <h3 class="text-white font-semibold">Legal</h3>
                         <ul class="mt-4 space-y-2">
                             <li><Link href="/terms-of-service" class="hover:underline">Terms of Service</Link></li>
                             <li><Link href="/privacypolicy" class="hover:underline">Privacy Policy</Link></li>
                             <li><Link href="/license" class="hover:underline">License</Link></li>
-                        </ul>
+                        </ul> -->
                     </div>
                 </div>
             </div>
