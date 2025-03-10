@@ -59,6 +59,7 @@
                     <!-- Forgot Password Link -->
                     <p class="text-sm text-gray-600 text-center">
                         <a href="#" class="text-blue-600 hover:underline">Forgot your password?</a>
+                        <Link></Link>
                     </p>
                 </form>
             </div>
